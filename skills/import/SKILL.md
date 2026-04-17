@@ -18,6 +18,41 @@ Follow `SYSTEM_OVERVIEW.md` for folder layout, naming rules, valid statuses, and
 
 ---
 
+## Required folder structure (reference this throughout)
+
+Every imported project **must** end up matching this layout exactly. Use it as the authoritative checklist in every step below.
+
+```
+initiatives/[Initiative Name]/
+  ideas.md
+  sources/                        ← initiative-level (immutable after ingestion)
+  outputs/                        ← initiative-level deliverables
+  projects/
+    [Project Name]/               ← one folder per project
+      00-how-to-use.md
+      sources/                    ← project-level sources (.gitkeep if empty)
+      outputs/                    ← project-level deliverables (.gitkeep if empty)
+      [Idea Name]/                ← one folder per idea
+        01_brief.md
+        02_pressure_test.md       ← present only if that stage was reached
+        ...
+        outputs/                  ← idea-level deliverables (.gitkeep if empty)
+  wiki/
+    index.md
+    log.md
+    .archive/
+    [domain]/
+    ...
+```
+
+**Key rules from `SYSTEM_OVERVIEW.md`:**
+- `outputs/` is **required** at the project level and at every idea level — always create it if missing (with `.gitkeep`), regardless of whether deliverable files currently exist. Future work will deposit files here.
+- `sources/` is **required** at the project level — always create it if missing (with `.gitkeep`).
+- `sources/` is immutable. Never modify files inside it.
+- Lifecycle artifact folders sit at `initiatives/[Initiative]/projects/[Project Name]/[Idea Name]/`, **not** directly under the initiative or grouped under a bare `projects/` parent that skips the named project folder.
+
+---
+
 ## When to use
 
 The user says they want to import projects, bring in old projects, migrate from an older system, or drop folders in and have them wired up.
@@ -29,7 +64,7 @@ The user says they want to import projects, bring in old projects, migrate from 
 Ask the user (or infer from context) which folders are being imported and into which initiative. Resolve:
 
 - **Initiative** - the `initiatives/[Name]/` folder they are importing into. Must exist. Ask once if ambiguous.
-- **Project folder paths** - where the imported folders are on disk right now. They may already be inside `initiatives/[Initiative]/projects/` (user dropped them there), or they may still be elsewhere (user will tell you). If they are not yet under `projects/`, move them there using a git-aware move (`git mv`) before continuing.
+- **Project folder paths** - where the imported folders are on disk right now. They may already be inside `initiatives/[Initiative]/projects/` (user dropped them there), or they may still be elsewhere (user will tell you). If they are not yet under `initiatives/[Initiative]/projects/`, move them there using a git-aware move (`git mv`) before continuing.
 
 List all the project folders you found and confirm the initiative with the user before making any changes.
 
@@ -57,16 +92,16 @@ List every subfolder inside the project folder. Each subfolder is an idea. For e
 | Folder name matches a valid idea name (noun-style, no slashes) | Name is usable as-is | Flag; ask user if rename is needed |
 | `01_brief.md` exists | File present | Note as missing - idea will be registered at `Backlog` |
 | Lifecycle artifacts are in order (`02_*`, `03_*`, etc.) | Files consistent with `IDEA_LIFECYCLE.md` stage order | Note any gaps; do not repair stage content |
-| `outputs/` subfolder is present when deliverables exist | Folder present or not needed | Note if deliverable files appear to be misplaced in `sources/` |
+| `outputs/` subfolder is present | Folder present | **Required repair** - create `outputs/` with `.gitkeep` in Step 4 regardless of whether deliverable files currently exist |
 | No source documents are sitting loose at the idea root | Loose docs belong in `sources/` or `outputs/` | Flag; ask user where they belong |
 
 ### 2c - Project-level files
 
-Check that:
+Check each of the following. All three are **required** regardless of whether any work has been done in the project yet. Mark any missing item as a required repair.
 
-- `sources/` subfolder exists (create it if missing, with `.gitkeep`).
-- `outputs/` subfolder exists if the project has any completed ideas with deliverables (create it if missing, with `.gitkeep`).
-- `00-how-to-use.md` exists. If missing, create it (see **`00-how-to-use.md`** section below).
+- `sources/` subfolder exists. If missing: **required repair** — create with `.gitkeep`.
+- `outputs/` subfolder exists. If missing: **required repair** — create with `.gitkeep`. Do not defer this on the assumption that no deliverables exist yet; the folder must be present so future work has a home.
+- `00-how-to-use.md` exists. If missing: **required repair** — create it (see **`00-how-to-use.md`** section below).
 
 ### 2d - Existing `ideas.md` entries
 
@@ -140,13 +175,19 @@ For each idea subfolder:
 
 If the imported `ideas.md` (from the old system) has rows in **## Done** or **## Dropped** sections, copy those rows into the current initiative's `ideas.md` **## Done** and **## Dropped** tables. Do not duplicate rows that already exist.
 
-### 4d - Create missing project-level files
+### 4d - Create missing folder structure
 
-If `00-how-to-use.md` was missing, create it now (see **`00-how-to-use.md`** section below).
+Apply every repair flagged in Steps 2b and 2c. Work through this checklist for every imported project:
 
-If `sources/` was missing, create it with `.gitkeep`.
+**Project level** (`initiatives/[Initiative]/projects/[Project Name]/`):
+- If `sources/` is missing: create it with `.gitkeep`.
+- If `outputs/` is missing: create it with `.gitkeep`. This is **always required** — do not skip it because no deliverable files exist yet.
+- If `00-how-to-use.md` is missing: create it now (see **`00-how-to-use.md`** section below).
 
-If `outputs/` was missing and the project has completed ideas with deliverable files, create it with `.gitkeep`.
+**Idea level** (`initiatives/[Initiative]/projects/[Project Name]/[Idea Name]/`):
+- If `outputs/` is missing inside any idea folder: create it with `.gitkeep`. This is **always required** for every idea folder, not only for ideas with existing deliverables.
+
+List every folder and file created in your completion summary.
 
 ### 4e - Fix broken links
 
@@ -191,8 +232,10 @@ After all changes are written:
 
 - Initiatives and projects imported (list them).
 - Ideas registered: new rows added, rows already present, rows flagged for drift.
+- Folders created (list every new `sources/`, `outputs/`, and idea folder, noting whether it required creation).
 - Files created or modified (list them).
 - Any issues that still need your decision (name collisions, status drift, `In Review` carryovers, misplaced files).
+- Folder structure verification: confirm that every imported project now matches the canonical layout in the **Required folder structure** section at the top of this skill. If any folder is still missing, explain why and what the user needs to do.
 - Reminder to run the **health-check** skill if multiple projects were imported, to verify the full tracker is consistent.
 
 ---
@@ -204,4 +247,7 @@ After all changes are written:
 - Do not silently upgrade or downgrade idea statuses based on artifacts alone. Flag drift and ask; the user decides.
 - Do not delete rows from **## Done** or **## Dropped** even if they look stale.
 - Do not import into an initiative that does not exist. Ask the user which initiative to use.
+- **Always create `outputs/`** at both the project level and every idea level. Never skip `outputs/` creation because no deliverable files exist yet — the folder is required by the system regardless.
+- **Always create `sources/`** at the project level even if no source documents exist yet.
+- Project folders must live under `initiatives/[Initiative]/projects/[Project Name]/`, not directly under the initiative root or nested inside a bare `projects/` folder that lacks the named project subfolder.
 - If the imported folder contains a `wiki/` subfolder, do not merge it automatically into the current initiative wiki. Flag it and ask the user whether to merge, ingest as sources, or leave it in place.
