@@ -44,6 +44,8 @@ Lifecycle artifacts (`01_brief.md`, `02_pressure_test.md`, and so on) stay the *
 | [`agents/README.md`](agents/README.md) | **Agent profiles index** - three specialist review personas (`quality-reviewer`, `evaluator`, `risk-auditor`) invoked at specific gates in the lifecycle. |
 | [`skills/next-idea/SKILL.md`](skills/next-idea/SKILL.md) | **next-idea skill** - invoke when you want the agent to pick the highest-priority idea and step it forward. Contains the execution protocol, file-keeping rules, wiki rules, prioritization procedure, and approval pattern. |
 | [`skills/add-idea/SKILL.md`](skills/add-idea/SKILL.md) | **add-idea skill** - invoke when you want to capture a new idea. Handles initiative/project routing, row format, rich content files, new project scaffolding, and `00-how-to-use.md` creation. |
+| [`VERSION`](VERSION) | Single-line file holding the current system version (e.g. `1.0.0`). Bump this when you release a change. |
+| [`CHANGELOG.md`](CHANGELOG.md) | Append-only record of every system release in [Keep a Changelog](https://keepachangelog.com) format. |
 
 ---
 
@@ -368,6 +370,26 @@ After you approve, update the idea status to the next lifecycle label (or keep t
 Full gate criteria for each stage are in `IDEA_LIFECYCLE.md`. Elaboration for thin ideas uses the same gate pattern. See [PRIORITIZATION.md](PRIORITIZATION.md) for blocked ideas and next-work selection.
 
 ---
+
+---
+
+## Version Management
+
+The system version is tracked in [`VERSION`](VERSION) and documented in [`CHANGELOG.md`](CHANGELOG.md). Version numbers follow [Semantic Versioning](https://semver.org/) applied to the system design:
+
+| Change type | When to use | Version bump |
+|---|---|---|
+| **MAJOR** | Breaking structural changes — renamed stages, restructured folders, scoring formula changes, or naming convention changes that require updating existing initiative files. | `1.0.0` → `2.0.0` |
+| **MINOR** | New skills, new lifecycle stages, new wiki domain types, new system documents — backward-compatible additions. | `1.0.0` → `1.1.0` |
+| **PATCH** | Clarifications, copy fixes, non-breaking template or instruction adjustments. | `1.0.0` → `1.0.1` |
+
+**When to update.** Update `VERSION` and `CHANGELOG.md` when you make any intentional, permanent change to the system design — not for edits inside individual initiative files (those are content, not system changes).
+
+**How to release.**
+1. Move the `## [Unreleased]` block in `CHANGELOG.md` to a new dated section: `## [X.Y.Z] — YYYY-MM-DD`.
+2. Update the version number in `VERSION`.
+3. Update the `[Unreleased]` and new version comparison links at the bottom of `CHANGELOG.md`.
+4. Commit with a message like `chore: release vX.Y.Z`.
 
 ## Getting Started
 

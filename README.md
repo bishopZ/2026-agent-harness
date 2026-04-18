@@ -1,5 +1,7 @@
 # 2026 Agent Harness
 
+![Version](https://img.shields.io/badge/version-1.0.0-blue) [![Changelog](https://img.shields.io/badge/changelog-CHANGELOG.md-informational)](CHANGELOG.md)
+
 - Lifecycle Management for every idea
 - Memory with Knowledge Management
 - Human-in-the-loop gating
@@ -215,6 +217,20 @@ Then run these skills in order:
 > "Run the health-check skill."
 
 That's all. Import complete!
+
+---
+
+## Version history
+
+See [CHANGELOG.md](CHANGELOG.md) for a full record of what changed in each release.
+
+The current system version is tracked in [`VERSION`](VERSION). Version numbers follow [Semantic Versioning](https://semver.org/):
+
+- **MAJOR** — breaking changes to file structure, stage names, scoring formula, or naming conventions that require migrating existing initiative data.
+- **MINOR** — new skills, lifecycle stages, wiki domain types, or system documents (backward-compatible).
+- **PATCH** — clarifications, copy fixes, and non-breaking template adjustments.
+
+When you ship a meaningful change to the system (new skill, revised stage, structural rename), bump `VERSION`, move the `[Unreleased]` block in `CHANGELOG.md` to a dated release section, and update the comparison links at the bottom of that file.
 
 ---
 
