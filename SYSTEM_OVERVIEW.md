@@ -2,12 +2,14 @@
 
 ## What This System Is
 
-This is a human-in-the-loop system for moving ideas from raw concept to market, built on two interlocking layers:
+This is a human-in-the-loop system for moving ideas from raw concept to market, built on four interlocking layers:
 
 - **The Lifecycle Layer** - a structured pipeline for advancing ideas through stages (Backlog → Brief → Pressure Test → Research → PRD → Design → Build → Evaluation → Launch → Marketing → Growth), with approval gates at every step. This answers: *what stage is each idea in?*
 - **The Knowledge Layer** - a persistent wiki per initiative that accumulates everything you learn: sources ingested, research synthesized, customer conversations recorded, decisions made. This answers: *what do we actually know?*
+- **The Rules Layer** - a small set of cross-cutting operating rules in [`rules/`](rules/README.md) that govern *how* the work is done at every stage: how evidence is labeled and logged, how work is sliced and verified, how context is assembled, how decisions are recorded, how rationalizations are caught, and what red flags warrant stopping. This answers: *what standards do we hold the work to?*
+- **The Agent Profiles Layer** - specialist review personas in [`agents/`](agents/README.md) (`quality-reviewer`, `evaluator`, `risk-auditor`) that The Agent adopts at specific gates to stress-test an artifact through a focused lens. This answers: *who is checking the work, and against what?*
 
-The two layers work together. The lifecycle drives action. The wiki captures learning. Every stage of the lifecycle both draws from and contributes to the wiki.
+The layers work together. The lifecycle drives action. The wiki captures learning. The rules keep the work disciplined. The agent profiles provide specialist scrutiny at the gates. Every stage of the lifecycle draws from and contributes to the wiki, is governed by the rules, and is gated by reviews from one or more profiles.
 
 ### Thinking partner, not only a draft engine
 
@@ -34,10 +36,12 @@ Lifecycle artifacts (`01_brief.md`, `02_pressure_test.md`, and so on) stay the *
 |---|---|
 | `SYSTEM_OVERVIEW.md` | This document. How the system works. |
 | `PRIORITIZATION.md` | Combined score (staleness + initiative tier + project + idea), tie-breakers, and how to pick the next idea (excluding blocked work). **Tier points** are **not** edited here. |
-| `IDEA_LIFECYCLE.md` | Defines every stage an idea moves through, with templates and approval criteria. |
+| `IDEA_LIFECYCLE.md` | Defines every stage an idea moves through, with templates and approval criteria. References the `rules/` and `agents/` folders at each gate. |
 | `DASHBOARD.md` | Dashboard for all initiatives, **Initiative priority** (**tier points**, high to low), and the **Awaiting your approval** queue. |
 | `initiatives/[Initiative Name]/ideas.md` | Per-initiative inventory. **Active Projects** table (with project **Priority**), ideas grouped by project, lifecycle status, Done, Dropped, and project history (Completed Projects, Dropped Projects). |
 | `USER.md` | Context about you - preferences, background, working style. The agent reads this to stay oriented. |
+| [`rules/README.md`](rules/README.md) | **Rules index** - six cross-cutting operating rules that apply across every stage: evidence-and-verification, incremental-execution, context-engineering, decision-records, anti-rationalization, and red-flags. |
+| [`agents/README.md`](agents/README.md) | **Agent profiles index** - three specialist review personas (`quality-reviewer`, `evaluator`, `risk-auditor`) invoked at specific gates in the lifecycle. |
 | [`skills/next-idea/SKILL.md`](skills/next-idea/SKILL.md) | **next-idea skill** - invoke when you want the agent to pick the highest-priority idea and step it forward. Contains the execution protocol, file-keeping rules, wiki rules, prioritization procedure, and approval pattern. |
 | [`skills/add-idea/SKILL.md`](skills/add-idea/SKILL.md) | **add-idea skill** - invoke when you want to capture a new idea. Handles initiative/project routing, row format, rich content files, new project scaffolding, and `00-how-to-use.md` creation. |
 
@@ -168,6 +172,31 @@ Where claims matter for strategy, separate **validated** knowledge from **workin
 
 Full patterns for optional deep chains (market analysis, GTM, customer research synthesis) and advanced prompting moves live in `IDEA_LIFECYCLE.md`.
 
+### Rules that codify these principles
+
+The principles above are enforced in practice by a small set of operating rules in [`rules/`](rules/README.md). Every stage of the lifecycle references one or more of these rules at its gate. Read the rule when the stage calls for it; no need to memorize them upfront.
+
+| Rule | What it governs |
+|---|---|
+| [`rules/evidence-and-verification.md`](rules/evidence-and-verification.md) | The `DATA` / `INFERENCE` / `ASSUMPTION` / `SPECULATION` labels, and the verification-evidence log that every Build slice and Evaluation writes to. *"Seems right is never sufficient."* |
+| [`rules/incremental-execution.md`](rules/incremental-execution.md) | How Build is sliced (Plan → Produce → Verify → Save), Simplicity First (Chesterton's Fence), Scope Discipline (NOTICED BUT NOT TOUCHING), slice sizing. |
+| [`rules/context-engineering.md`](rules/context-engineering.md) | The 6-level context hierarchy (system rules → user → wiki → stage artifacts → slice → session), trust levels, and how to handle contradictory context. |
+| [`rules/decision-records.md`](rules/decision-records.md) | Architecture Decision Record (ADR) template, ID format, and the supersede-don't-edit pattern. |
+| [`rules/anti-rationalization.md`](rules/anti-rationalization.md) | Common excuses for skipping discipline, with counter-arguments. The Agent cites these when it pushes back. |
+| [`rules/red-flags.md`](rules/red-flags.md) | System-wide and per-stage red flags. When one is observed, The Agent reports it and recommends a stop or course-correct. |
+
+### Specialist reviews at the gates
+
+At certain gates, The Agent adopts one of three specialist profiles from [`agents/`](agents/README.md). Each profile is a focused lens with a dedicated framework and output format.
+
+| Profile | Lens | Invoked at |
+|---|---|---|
+| [`agents/quality-reviewer.md`](agents/quality-reviewer.md) | Fidelity, clarity, structure, safety, performance | End of Build; deep reviews at Evaluation |
+| [`agents/evaluator.md`](agents/evaluator.md) | Verification coverage: every claim/criterion traces to evidence | Build Plan approval; end-to-end Evaluation |
+| [`agents/risk-auditor.md`](agents/risk-auditor.md) | Input/auth/data/infra/reputation exposures | Evaluation for user-facing or sensitive work; Launch rollout + rollback review |
+
+`IDEA_LIFECYCLE.md` specifies which profiles must run at which gates. You can also invoke any profile on demand to stress-test an artifact between gates.
+
 ---
 
 ## Idea Statuses
@@ -180,8 +209,8 @@ Full patterns for optional deep chains (market analysis, GTM, customer research 
 | `Research` | Market research and/or customer discovery underway or complete |
 | `PRD` | Product requirements document in progress or approved |
 | `Design` | Architecture, flows, or design specs in progress or approved |
-| `Build` | Active development |
-| `Evaluation` | Testing, QA, and pre-launch validation |
+| `Build` | Active development. Spans sub-phases **6a Build Plan**, **6b Slice Execution**, and **6c Build Review** — use **Notes** in the initiative's `ideas.md` to spell out which sub-phase the idea is in. |
+| `Evaluation` | End-to-end verification, QA, specialist reviews (quality-reviewer, evaluator, risk-auditor), and pre-launch validation. |
 | `Launch` | Launch plan, minimum go-live assets, rollout, and go-live. Covers pre-release work and execution. Use **Notes** in the initiative’s `ideas.md` to spell out whether you are still planning or already live. |
 | `Marketing` | Post-launch marketing pack: channel plan, copy, checklist; you publish; Agent prepares materials |
 | `Growth` | Post-marketing-pack: metrics, product iteration, user-base growth, ongoing experiments |
@@ -224,10 +253,31 @@ If two ideas still tie after the score, use tie-breakers in [PRIORITIZATION.md](
 ```
 /
   SYSTEM_OVERVIEW.md            ← How the system works (this file)
-  PRIORITIZATION.md ← Combined score and next-work selection
-  IDEA_LIFECYCLE.md             ← Stage definitions and templates
-  DASHBOARD.md        ← Dashboard, initiative priority stack, approval queue
+  PRIORITIZATION.md             ← Combined score and next-work selection
+  IDEA_LIFECYCLE.md             ← Stage definitions, templates, and gate criteria
+  DASHBOARD.md                  ← Dashboard, initiative priority stack, approval queue
   USER.md                       ← Context about you
+
+  /rules/                       ← Cross-cutting operating rules (apply at every stage)
+    README.md                   ← Rules index
+    evidence-and-verification.md
+    incremental-execution.md
+    context-engineering.md
+    decision-records.md
+    anti-rationalization.md
+    red-flags.md
+
+  /agents/                      ← Specialist review profiles invoked at gates
+    README.md                   ← Profiles index
+    quality-reviewer.md
+    evaluator.md
+    risk-auditor.md
+
+  /skills/                      ← Skills The Agent runs on demand
+    add-idea/SKILL.md
+    next-idea/SKILL.md
+    health-check/SKILL.md
+    [...]
 
   /initiatives/
     [Initiative Name]/
@@ -242,7 +292,16 @@ If two ideas still tie after the score, use tie-breakers in [PRIORITIZATION.md](
           02b_customer_discovery.md
           03_prd.md
           04_design.md
-          05_build/
+          05_build_plan.md            ← Approved at 6a (Build Plan gate)
+          05_build/                   ← Build workspace (produced during 6b / 6c)
+            README.md                 ← Build Review summary (6c), links to reviews
+            decisions.md               ← Architecture Decision Records from Design + Build
+            verification_log.md        ← Evidence log: one row per verification event
+            slices/
+              slice_NN_name/
+                changes.md            ← What this slice produced
+                acceptance.md         ← What "done" meant for this slice
+                evidence.md           ← Verification results for this slice
           outputs/              ← Finished deliverables produced by this idea (documents, reports, assets)
           06_evaluation.md
           07_launch_plan.md
@@ -270,6 +329,9 @@ If two ideas still tie after the score, use tie-breakers in [PRIORITIZATION.md](
 - `wiki/` is entirely The Agent-maintained - you read it, The Agent writes and updates it.
 - `wiki/.archive/` holds retired pages - never delete, always archive.
 - Lifecycle artifact folders live at `initiatives/[Initiative Name]/[Project Name]/[Idea Name]/` and hold the full lifecycle from `01_brief.md` onward.
+- `05_build_plan.md` is the approved plan from gate 6a. `05_build/` is the working folder for slice execution (6b) and Build Review (6c). `05_build/verification_log.md` accumulates evidence across all slices and is the primary artifact Evaluation maps against the PRD's P0 acceptance criteria.
+- `05_build/decisions.md` holds ADRs for any Design- or Build-time direction-setting choice. ADRs follow [`rules/decision-records.md`](rules/decision-records.md) — supersede, don't edit, when a decision changes.
+- `/rules/` and `/agents/` are **system-level** resources - they apply to every initiative, not to any single idea. Do not copy rule or profile files into an initiative folder; reference them in place.
 - Completed or dropped work moves to `/archive/` when you take artifacts off the main tree. Completed and dropped ideas stay recorded in each initiative’s `ideas.md`. When archiving, move the lifecycle artifacts and `outputs/` folder together so deliverables stay with the work that produced them.
 
 ---
