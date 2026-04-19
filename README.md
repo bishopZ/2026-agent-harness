@@ -1,6 +1,6 @@
 # 2026 Agent Harness v1.1
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue) [![Changelog](https://img.shields.io/badge/changelog-CHANGELOG.md-informational)](CHANGELOG.md)
+![Version](https://img.shields.io/badge/version-1.1.0-blue) [![Changelog](https://img.shields.io/badge/changelog-CHANGELOG.md-informational)](CHANGELOG.md)
 
 - Lifecycle Management for every idea
 - Memory with Knowledge Management
