@@ -2,11 +2,13 @@
 
 ![Version](https://img.shields.io/badge/version-1.0.0-blue) [![Changelog](https://img.shields.io/badge/changelog-CHANGELOG.md-informational)](CHANGELOG.md)
 
+- Lifecycle Management for every idea
 - Memory with Knowledge Management
-- Full idea Lifecycle Management
 - Human-in-the-loop gating
 - Automatic prioritization
 - Self-healing
+
+Together these form the harness, the operating system for the work. The agent is the emergent execution behavior that runs inside this structure when you follow the documented skills and file rules.
 
 A structured knowledge management system for moving ideas from raw concept to shipped result, with an AI agent as your execution partner at every step.
 
@@ -199,6 +201,22 @@ Completed and dropped work moves to `/archive/` when you want to take it off the
   /archive/                      ← Completed and dropped work, bundled and preserved
   /skills/                       ← AI skill runbooks
 ```
+
+---
+
+## Upgrade from a previous version
+
+1. Replace this repo's `initiatives/` folder with the `initiatives/` folder from your old version. Also copy over your USER.md file.
+
+Then run these skills in order:
+
+> "Run the import skill."
+
+> "Run the bootstrap skill."
+
+> "Run the health-check skill."
+
+That's all. Import complete!
 
 ---
 
