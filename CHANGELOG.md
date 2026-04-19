@@ -17,6 +17,30 @@ _Changes staged for the next release go here._
 
 ---
 
+## [1.1.0] — 2026-04-19
+
+### Added
+
+- `rules/` directory with six cross-cutting operating rules: `evidence-and-verification.md`, `incremental-execution.md`, `context-engineering.md`, `decision-records.md`, `anti-rationalization.md`, `red-flags.md`.
+- `agents/` directory with three specialist review profiles: `quality-reviewer.md`, `evaluator.md`, `risk-auditor.md`.
+- `CHANGELOG.md` and `VERSION` file for explicit version tracking.
+- Version management documentation in `README.md` and `SYSTEM_OVERVIEW.md`.
+
+### Changed
+
+- `IDEA_LIFECYCLE.md` — expanded Build stage with Plan → Slice → Verify cycle; every stage now cites which rules and agent profiles to load.
+- `SYSTEM_OVERVIEW.md` — added wiki operation detail and version management section.
+- `AGENTS.md` — updated to reference rules and agent directories introduced in this release.
+- `README.md` — added version management and rules/agents overview sections.
+- `skills/health-check/SKILL.md` — updated checks to cover v1.1 system additions (rules, agents, CHANGELOG).
+- `skills/import/SKILL.md` — enforced required folder structure for `outputs/` and `sources/` during ingestion.
+
+### Removed
+
+- `LAUNCH_MATERIALS.md` — retired; launch guidance folded into lifecycle stages and rules.
+
+---
+
 ## [1.0.0] — 2026-04-14
 
 ### Added
@@ -36,5 +60,6 @@ _Changes staged for the next release go here._
 - `/archive/` for completed or dropped work bundles.
 - `VERSION` file tracking system version.
 
-[Unreleased]: https://github.com/bishopZ/2026-agent-harness/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/bishopZ/2026-agent-harness/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/bishopZ/2026-agent-harness/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/bishopZ/2026-agent-harness/releases/tag/v1.0.0
