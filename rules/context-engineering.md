@@ -119,7 +119,7 @@ RELEVANT FILES:
 - wiki/customers/love-street-personas.md
 
 PATTERN TO FOLLOW:
-- See Time2Magic - Company/projects/Vibe Code Austin/Speaker Discovery/08_marketing_pack.md (approved 2026-03-12)
+- See `initiatives/My Company/Example Project/Example Idea/08_marketing_pack.md` in this repo (hypothetical path illustrating artifact depth)
 
 CONSTRAINT:
 - No live posting. Agent prepares materials only.

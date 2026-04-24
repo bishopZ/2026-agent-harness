@@ -13,7 +13,29 @@ Version numbers follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html
 
 ## [Unreleased]
 
-_Changes staged for the next release go here._
+---
+
+## [2.0.0] — 2026-04-23
+
+### Added
+
+- **Git submodule convention for projects with repos.** Projects that have an associated GitHub repository use a `repo/` subfolder as a git submodule. The agent creates the empty placeholder and provides the `git submodule add` command; the user runs it to attach the repo. Documented in `README.md` (optional `repo/` section), `SYSTEM_OVERVIEW.md` (folder structure and key rules), and `IDEA_LIFECYCLE.md` (Build stage — project `repo/` and slice execution).
+- `IDEA_LIFECYCLE.md` — **Deliverable types and lifecycle shortcuts** (non-product PRDs, research-only exits, avoiding parent-product scope confusion).
+
+### Changed
+
+- **BREAKING — project folder layout:** Project folders are **direct children of each initiative** at `initiatives/[Initiative Name]/[Project Name]/` (alongside `ideas.md`, `wiki/`, `sources/`, `outputs/`). The old `initiatives/.../projects/[Project Name]/` layout is removed. The shipped defaults (`My Company`, `My Personal Life`, `My Hobby`) move `General` from `projects/General/` to `General/`. **Migration:** for existing forks, run `git mv "initiatives/<Initiative>/projects/<Project>" "initiatives/<Initiative>/<Project>"` for each project folder, then remove empty `initiatives/<Initiative>/projects/` if present; update any links in `ideas.md` or wiki that pointed at the old path.
+- `README.md` — synced with upstream system docs, including the optional `repo/` submodule workflow and folder structure; version badge `2.0.0`.
+- `SYSTEM_OVERVIEW.md` — full file tree with optional `repo/`, key rules for submodule code vs harness Markdown, and where implementation work goes when `repo/` exists.
+- `IDEA_LIFECYCLE.md` — Build stage aligned with `repo/` submodules; Build Plan / slice execution / build artifacts paths use `initiatives/.../[Project Name]/[Idea Name]/`.
+- `DASHBOARD.md` — intro sentence aligned with the flat project layout.
+- `skills/add-project/SKILL.md` — steps for `[Project Name]/`, optional `repo/` + `00-how-to-use.md` **Repo** section.
+
+### Migration (v1.1.x → v2.0.0)
+
+1. Move each `initiatives/<Initiative>/projects/<Project>/` to `initiatives/<Initiative>/<Project>/` (preserve Git history with `git mv` when possible).
+2. Search and replace path references in `ideas.md`, wiki, and any bookmarks from `projects/<Project>` to `<Project>` under that initiative.
+3. Run the **health-check** skill and fix any broken links.
 
 ---
 
@@ -60,6 +82,7 @@ _Changes staged for the next release go here._
 - `/archive/` for completed or dropped work bundles.
 - `VERSION` file tracking system version.
 
-[Unreleased]: https://github.com/bishopZ/2026-agent-harness/compare/v1.1.0...HEAD
+[Unreleased]: https://github.com/bishopZ/2026-agent-harness/compare/v2.0.0...HEAD
+[2.0.0]: https://github.com/bishopZ/2026-agent-harness/compare/v1.1.0...v2.0.0
 [1.1.0]: https://github.com/bishopZ/2026-agent-harness/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/bishopZ/2026-agent-harness/releases/tag/v1.0.0

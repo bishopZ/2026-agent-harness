@@ -25,7 +25,7 @@ Resolve from the user and files:
 
 ## When no idea folder exists
 
-If there is only an `ideas.md` row and **no** `projects/[Project]/[Idea]/` folder:
+If there is only an `ideas.md` row and **no** `initiatives/[Initiative]/[Project]/[Idea]/` folder:
 
 1. Remove the row from its **Project:** section.
 2. Append a row to **## Dropped** with **Idea**, **Project**, **Date**, **Reason**.
@@ -46,13 +46,13 @@ Run in order.
 
 ### 2. Plan the archive bundle
 
-1. **Inner folder name** matches the existing `projects/[Project]/[Idea]/` folder and the **Idea** column.
+1. **Inner folder name** matches the existing `initiatives/[Initiative]/[Project]/[Idea]/` folder and the **Idea** column.
 2. **Bundle path** at repo root: `archive/{Prefix} - {Idea} - {YYYY-MM-DD}/` with the same **Prefix** rules as **complete-idea** (match existing initiative bundles in `archive/` first).
 3. Add `README.md` at the bundle root. State initiative, project, idea, archived date, that the **project** folder may remain for other ideas, and list **Contents**. Link any new wiki page that captures the durable narrative (for example a strategy one-pager). Follow the pattern of any existing bundles in `archive/` when they exist.
 
 ### 3. Move lifecycle artifacts and outputs
 
-1. Move `initiatives/[Initiative]/projects/[Project]/[Idea]/` into `archive/.../[Idea]/` with a git-aware move when possible. This includes the `outputs/` subfolder if one exists - finished deliverables move with the work that produced them.
+1. Move `initiatives/[Initiative]/[Project]/[Idea]/` into `archive/.../[Idea]/` with a git-aware move when possible. This includes the `outputs/` subfolder if one exists - finished deliverables move with the work that produced them.
 2. Remove the idea row from the active **Project:** table.
 3. If the user wants to keep a **lightweight pitch or lesson** in the wiki, add or update the right domain page **before** or **after** the move, and point the **Dropped** **Reason** and bundle **README** at that page.
 
@@ -72,7 +72,7 @@ Replace empty placeholder rows in **## Dropped** if the file still uses them so 
 ### 5. Dashboard and links
 
 1. **DASHBOARD.md** - Remove any **Awaiting your approval** row for this idea.
-2. **Broken links** - Fix tracker links, `ideas.md` links, and wiki links that still pointed at the old `projects/.../[Idea]/` path. Point them at the archive bundle or new wiki pages.
+2. **Broken links** - Fix tracker links, `ideas.md` links, and wiki links that still pointed at the old on-disk path. Point them at the archive bundle or new wiki pages.
 
 ### 6. Wiki
 

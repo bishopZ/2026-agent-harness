@@ -1,6 +1,6 @@
-# 2026 Agent Harness v1.1
+# 2026 Agent Harness v2.0
 
-![Version](https://img.shields.io/badge/version-1.1.0-blue) [![Changelog](https://img.shields.io/badge/changelog-CHANGELOG.md-informational)](CHANGELOG.md)
+![Version](https://img.shields.io/badge/version-2.0.0-blue) [![Changelog](https://img.shields.io/badge/changelog-CHANGELOG.md-informational)](CHANGELOG.md)
 
 - Lifecycle Management for every idea
 - Memory with Knowledge Management
@@ -58,6 +58,22 @@ Each project has ideas. These are the individual tasks to be worked on.
 Use the **add-idea** skill to capture an idea in the right place with the right structure.
 
 > "Add an idea to My Company. I want to build a referral program."
+
+### Optional: project code in `repo/`
+
+Each **project** can include a `repo/` folder that holds a **git submodule** pointing at that project’s real codebase (for example an application repository). That keeps this harness focused on lifecycle Markdown while software work lives in its own Git history.
+
+From the **root of this repository**, add a submodule at the path that matches the project folder (names must match your `ideas.md` project name):
+
+```bash
+git submodule add <repository-url> "initiatives/[Initiative Name]/[Project Name]/repo"
+```
+
+After cloning this repo elsewhere, initialize submodules with `git submodule update --init --recursive` (or clone with `git clone --recurse-submodules`).
+
+When `repo/` exists, do **application and source-code** work inside that submodule: create branches, commit, and push to the submodule’s remote. You do **not** need to open pull requests against this harness repo for ordinary product code changes—the harness tracks planning and artifacts; the submodule tracks the code.
+
+See `SYSTEM_OVERVIEW.md` (file layout) and `IDEA_LIFECYCLE.md` (Build stage) for how agents and humans should treat `repo/` during Build.
 
 ---
 
@@ -179,6 +195,7 @@ Completed and dropped work moves to `/archive/` when you want to take it off the
       sources/                   ← Documents you provided (immutable)
       outputs/                   ← Documents the work produced
       [Project Name]/
+        repo/                    ← Optional: git submodule for this project’s codebase
         sources/                 ← Project-scoped documents you provided
         outputs/                 ← Project-scoped deliverables
         [Idea Name]/

@@ -33,9 +33,7 @@ initiatives/[Initiative Name]/
   ideas.md
   sources/         (with .gitkeep)
   outputs/         (with .gitkeep)
-  projects/
-    General/
-      .gitkeep
+  General/         (default project; .gitkeep if empty)
   wiki/
     index.md
     log.md
@@ -54,7 +52,7 @@ Full idea list for this initiative. The root dashboard is [DASHBOARD.md](../../D
 
 **In progress** means any idea that is not `Backlog`, moved to **Done**, or **Dropped**. Use the **Status** column for the full lifecycle label.
 
-Artifact folders live at `projects/[Project Name]/[Idea Name]/` under this initiative. Ungrouped ideas use the **General** project.
+Per `SYSTEM_OVERVIEW.md`, each **project** is a folder directly under this initiative. Artifact folders live at `[Project Name]/[Idea Name]/` (names match the **Project** and **Idea** columns). Ungrouped ideas use the **General** project.
 
 ---
 
@@ -64,7 +62,7 @@ Artifact folders live at `projects/[Project Name]/[Idea Name]/` under this initi
 |---|---|---|
 | General | Default bucket for ideas that do not belong to another project yet. | Medium |
 
-Add rows here when you create named projects. **Project** names should match folder names under `projects/` exactly.
+Add rows here when you create named projects. **Project** names should match folder names alongside `ideas.md` and `wiki/` (not inside a `projects/` subfolder) exactly.
 
 ---
 

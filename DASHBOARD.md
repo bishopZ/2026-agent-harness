@@ -1,6 +1,6 @@
 # Dashboard
 
-This file is the **dashboard** for all initiatives. It is the **source of truth for initiative-level priority** (**tier points** in the table below). It shows high-level status and what is waiting for your approval. It does not list every idea. For the full idea list per initiative, open that initiative’s `ideas.md`. **Project** and **per-idea** priority and status still live there, while all working files now live under each initiative `projects/` tree. For workflow and stages, see `SYSTEM_OVERVIEW.md` and `IDEA_LIFECYCLE.md`. For how tier points, project priority, idea priority, and staleness combine to pick the next idea, see [PRIORITIZATION.md](PRIORITIZATION.md).
+This file is the **dashboard** for all initiatives. It is the **source of truth for initiative-level priority** (**tier points** in the table below). It shows high-level status and what is waiting for your approval. It does not list every idea. For the full idea list per initiative, open that initiative’s `ideas.md`. **Project** and **per-idea** priority and status still live there, while all working files now live under each initiative's project folders. For workflow and stages, see `SYSTEM_OVERVIEW.md` and `IDEA_LIFECYCLE.md`. For how tier points, project priority, idea priority, and staleness combine to pick the next idea, see [PRIORITIZATION.md](PRIORITIZATION.md).
 
 ---
 
