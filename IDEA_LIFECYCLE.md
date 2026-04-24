@@ -20,6 +20,22 @@ At any point, an idea may move to `On Hold` or `Dropped`. While waiting on you a
 
 ---
 
+## Deliverable types and lifecycle shortcuts
+
+**Not every idea is a software product.** The default stage map and the Stage 4 PRD template are **product-shaped** (user stories, functional requirements, launch metrics). That is correct when the idea is to ship or materially change a product. It is **incorrect** when the idea’s committed outcome is only a **document**, **research memo**, **process**, or **one-off asset**.
+
+**How to avoid “wrong PRD” confusion**
+
+1. **Name the deliverable in the Brief** — In `01_brief.md`, state explicitly what ships when the idea completes: e.g. “single competitive research document in `outputs/` and wiki `market/` update,” not “inform the PRD” without naming the terminal artifact.
+2. **Tag the idea row or front matter** — Use **Notes** in `ideas.md` or optional YAML (e.g. `deliverable_class: research_document`) so Stage 4 is interpreted as **requirements for that work product**, not as an app specification. Parent **project** folder (e.g. Love Street) provides context; it does **not** redefine the idea’s deliverable.
+3. **Stage 4 still applies, but the content changes** — `03_prd.md` should specify **scope, sections, acceptance criteria, and verification** for the document (or other non-code deliverable), **not** product user stories unless the idea is actually to build the product.
+4. **Research-only or doc-only exit** — If the Brief defines the outcome as “published research” or “one report,” then after approved Research the work is usually: thin **Design** (outline, template, canonical location) → **Build** (write, cite, place in `outputs/` per `SYSTEM_OVERVIEW.md`) → **Evaluation** (stakeholder read, fact-check) → **Done** or a single **Launch** if the “release” is publication. **Marketing / Growth** may be waived with rationale in **Notes** when they do not apply.
+5. **When full product stages are required** — Use the full map through Launch (and beyond) when the idea commits to shipping or operating something in market (app, recurring service, public campaign with ongoing metrics). When in doubt, the Brief’s **success criteria** decide: if they only mention a document or a wiki update, do not generate an app PRD.
+
+**Why agents default to app PRDs:** The Research stage’s decision framework says “Build → proceed to PRD.” That “Build” means **continue the initiative pipeline**, not “write a product requirements document for the parent project.” Combined with a **project** name that is a product (Love Street), it is easy to mis-route Stage 4 into **parent-product** scope. The Brief + deliverable tag breaks that ambiguity.
+
+---
+
 ## Wiki domains by initiative type
 
 This document often names `**customers/`** and `**market/`** because those folders match a **business** wiki (e.g. My Company). On a **personal brand** wiki, use `**audience/`** anywhere this doc says `**customers/`** (or "customers / audience" below). The stages and artifacts are the same.
@@ -324,6 +340,8 @@ A synthesis document with all findings, key quotes, the decision framework outco
 
 - An approved `04_design.md` exists
 
+**Project `repo/` (software):** When the idea’s parent **project** includes a `repo/` git submodule (see `SYSTEM_OVERVIEW.md`), **all product source code and application changes** for that build belong **inside `repo/`**. The harness folders under `[Project Name]/[Idea Name]/` hold lifecycle artifacts (`05_build_plan.md`, `05_build/`, `outputs/` for documents, etc.); they are not a substitute for the application tree. Plan slices with paths under `repo/`, run tests and commits from that working tree, and push branches to the submodule’s remote. If there is no `repo/` for the project, implementation location follows the Design and your repo layout—but never treat the harness root as a dumping ground for unrelated product code when a project submodule is the agreed home.
+
 ### Sub-phase 6a - Build Plan
 
 Before any construction begins, The Agent decomposes the Design into a **Build Plan**: an ordered list of thin vertical slices with explicit acceptance criteria, verification steps, and dependencies.
@@ -372,9 +390,9 @@ Before any construction begins, The Agent decomposes the Design into a **Build P
 With the Build Plan approved, The Agent executes one slice at a time following the cycle in `rules/incremental-execution.md`:
 
 1. **Plan the slice** — re-read the slice's acceptance criteria and the relevant prior artifacts
-2. **Produce** — the minimum that is obviously correct
+2. **Produce** — the minimum that is obviously correct (for software with a project `repo/`, edit files **inside** `initiatives/.../[Project]/repo/`, not the harness root)
 3. **Verify** — run the acceptance checks; record the evidence
-4. **Save** — atomic commit (software) or named save-point (non-software) with a descriptive message
+4. **Save** — atomic commit (software) or named save-point (non-software) with a descriptive message; for code in `repo/`, commit **in the submodule** (its own Git state), not only in the parent harness repo
 5. **Log** — append an entry to `05_build/verification_log.md`
 6. **Record decisions** — any architectural or direction-setting choice made during the slice becomes a Decision Record in `05_build/decisions.md`
 7. **Next slice** — carry forward, don't restart
@@ -398,7 +416,7 @@ The results are written into `05_build/README.md` and any Critical / High findin
 ### Build artifacts (summary)
 
 ```
-projects/[Project Name]/[Idea Name]/
+[Project Name]/[Idea Name]/
   05_build_plan.md              ← approved at gate 6a
   05_build/
     README.md                   ← build summary + index (incl. Build Review results)
@@ -414,7 +432,7 @@ projects/[Project Name]/[Idea Name]/
   outputs/                      ← finished deliverables (documents, reports, code artifacts, assets)
 ```
 
-Working files and drafts stay in `05_build/`. When the build produces a finished deliverable (a document, report, asset, or other tangible output), place it in the idea's `outputs/` folder. Link to output files from the Done row in `ideas.md` when the idea completes.
+When the project has `repo/`, the **implemented code** for slices lives in that submodule; `05_build/slices/` still records what changed, acceptance, and evidence. Working files and drafts stay in `05_build/`. When the build produces a finished deliverable (a document, report, asset, or other tangible output), place it in the idea's `outputs/` folder. Link to output files from the Done row in `ideas.md` when the idea completes.
 
 **Wiki update:** Key technical decisions, architectural choices, and lessons from the build are captured in the `operations/` domain (business / personal brand) or `craft/` (creative). ADRs that rise above per-idea scope are also promoted into `wiki/strategy/` or the domain most relevant to the decision.
 

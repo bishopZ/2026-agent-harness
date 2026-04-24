@@ -110,8 +110,8 @@ If no row passes the filters in **What counts as blocked**, say so and stop. Do 
 
 ## Default process vs project override
 
-- **Default (product-style ideas)** - Follow [IDEA_LIFECYCLE.md](IDEA_LIFECYCLE.md) from the idea's current status. Use `projects/[Project]/[Idea]/` and stage artifacts as described there.
-- **Override** - If the project has a guide such as `projects/[Project]/00-how-to-use.md` or a `PROCESS.md` in that project folder, **that guide wins** for stage order, artifacts, and naming for ideas under that **Project** row.
+- **Default (product-style ideas)** - Follow [IDEA_LIFECYCLE.md](IDEA_LIFECYCLE.md) from the idea's current status. Use `initiatives/[Initiative]/[Project]/[Idea]/` and stage artifacts as described there.
+- **Override** - If the project has a guide such as `initiatives/[Initiative]/[Project]/00-how-to-use.md` or a `PROCESS.md` in that project folder, **that guide wins** for stage order, artifacts, and naming for ideas under that **Project** row.
 
 **Finding the pointer.** Check **Notes** in `ideas.md` for a link to a project guide. If there is no pointer and the project folder has `00-how-to-use.md`, use it. If there is no guide, use IDEA_LIFECYCLE.
 
@@ -119,7 +119,7 @@ If no row passes the filters in **What counts as blocked**, say so and stop. Do 
 
 ## Thin ideas and elaboration
 
-If an idea is only a title or one line in `ideas.md` and has **no** project brief under `projects/[Project]/[Idea]/01_brief.md` that states acceptance criteria, requirements, and open questions for the immediate next step, do not jump ahead. Follow the elaboration path in [IDEA_LIFECYCLE.md](IDEA_LIFECYCLE.md).
+If an idea is only a title or one line in `ideas.md` and has **no** project brief under `initiatives/[Initiative]/[Project]/[Idea]/01_brief.md` that states acceptance criteria, requirements, and open questions for the immediate next step, do not jump ahead. Follow the elaboration path in [IDEA_LIFECYCLE.md](IDEA_LIFECYCLE.md).
 
 ---
 

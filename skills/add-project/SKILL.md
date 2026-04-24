@@ -2,14 +2,14 @@
 name: add-project
 description: >-
   Add a named project bucket to an initiative. Creates the Active Projects row,
-  the Project section in ideas.md, the folder under projects/, and a
+  the Project section in ideas.md, the folder under the initiative root, and a
   00-how-to-use.md orientation file. Use when the user wants to create a new
   project, add a project bucket, or group ideas under a named project.
 ---
 
 # Add Project
 
-Use this skill when the user wants to create a **named project** inside an initiative. A project is a bucket that groups related ideas. All it needs to exist is a row in **Active Projects**, a section in `ideas.md`, and a folder under `projects/`.
+Use this skill when the user wants to create a **named project** inside an initiative. A project is a bucket that groups related ideas. All it needs to exist is a row in **Active Projects**, a section in `ideas.md`, and a folder under the initiative root.
 
 Do not use Trello. Use only files in this repo.
 
@@ -33,9 +33,10 @@ Do not invent initiatives. Do not create a project that already exists in **Acti
 | 1 | Edit `initiatives/[Initiative]/ideas.md`. |
 | 2 | Add a row to the **## Projects** table: **Project**, **Purpose**, **Priority**. |
 | 3 | Add a **## Project: [Exact Name]** section below the existing project sections, with the standard idea table header and a placeholder row. |
-| 4 | Create `initiatives/[Initiative]/projects/[Project Name]/` on disk. Add `.gitkeep` if no other files will be placed there immediately. |
-| 5 | Create `initiatives/[Initiative]/projects/[Project Name]/00-how-to-use.md` (see below). |
-| 6 | Optionally update **Last initiative work** in `DASHBOARD.md` to today when this is a significant structural addition the user wants to count toward recency. |
+| 4 | Create `initiatives/[Initiative]/[Project Name]/` on disk. Add `.gitkeep` if no other files will be placed there immediately. |
+| 5 | Create `initiatives/[Initiative]/[Project Name]/00-how-to-use.md` (see below). |
+| 6 | **If the project has an associated GitHub repo:** create an empty `repo/` subfolder with a `.gitkeep` inside. Add the **Repo** section to `00-how-to-use.md` (see below). Do not attempt to configure the submodule — tell the user to run `git submodule add <repo-url> "initiatives/[Initiative]/[Project Name]/repo"` from the repo root. |
+| 7 | Optionally update **Last initiative work** in `DASHBOARD.md` to today when this is a significant structural addition the user wants to count toward recency. |
 
 ## Active Projects row format
 
@@ -63,11 +64,13 @@ The **Project** column header and the section heading must match the **Project**
 
 Keep it short. Include:
 
-- A one-line statement that all idea work for this project lives under `projects/[Project Name]/[Idea Name]/`.
-- A link to the initiative's `ideas.md` at `../../ideas.md`.
-- Links to `SYSTEM_OVERVIEW.md` and `IDEA_LIFECYCLE.md` at repo root. Adjust `../` depth by counting path segments from this file to the repo root (the file lives at `initiatives/[Initiative]/projects/[Project Name]/00-how-to-use.md`, so four levels up: `../../../../SYSTEM_OVERVIEW.md`).
+- A one-line statement that all idea work for this project lives under `[Project Name]/[Idea Name]/`.
+- A link to the initiative's `ideas.md` at `../ideas.md`.
+- Links to `SYSTEM_OVERVIEW.md` and `IDEA_LIFECYCLE.md` at repo root. Adjust `../` depth by counting path segments from this file to the repo root (the file lives at `initiatives/[Initiative]/[Project Name]/00-how-to-use.md`, so three levels up: `../../../SYSTEM_OVERVIEW.md`).
 
 Use an existing `00-how-to-use.md` in the same initiative as a template when one exists. If none exists, write a minimal version using the rules above.
+
+If the project has an associated GitHub repo, append a **## Repo** section explaining that `repo/` is a git submodule placeholder and providing the exact `git submodule add` command the user needs to run (with the correct path, leaving `<repo-url>` for the user to fill in).
 
 ## Naming rules
 

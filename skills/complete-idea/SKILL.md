@@ -19,14 +19,14 @@ Follow `SYSTEM_OVERVIEW.md` (archive rules, naming), `IDEA_LIFECYCLE.md`, and th
 
 Resolve from the user and files:
 
-- **Idea** name (required). Must match the **Idea** column and folder name under `projects/` when a folder exists.
+- **Idea** name (required). Must match the **Idea** column and folder name under `initiatives/[Initiative]/[Project]/` when a folder exists.
 - **Initiative** and **Project** if given. If the name is ambiguous across initiatives or projects, stop and ask once.
-- **Outcome** (required). One to three sentences for the **Done** table. Mention finished deliverables in `outputs/` and link to them. Also mention anything else that **stays** in the live tree (for example ongoing files under `projects/.../sources/`).
+- **Outcome** (required). One to three sentences for the **Done** table. Mention finished deliverables in `outputs/` and link to them. Also mention anything else that **stays** in the live tree (for example ongoing files under `[Project]/sources/` in that initiative).
 - **Completed date** (optional). Default **today** in `YYYY-MM-DD`.
 
 ## When no idea folder exists
 
-If the idea only has a row in `ideas.md` and **no** `projects/[Project]/[Idea]/` folder:
+If the idea only has a row in `ideas.md` and **no** `initiatives/[Initiative]/[Project]/[Idea]/` folder:
 
 1. Remove the row from its **Project:** section.
 2. Append a row to **## Done** with **Idea**, **Project**, **Completed**, **Outcome**.
@@ -46,15 +46,15 @@ Run in order.
 
 ### 2. Plan the archive bundle
 
-1. **Inner folder name** must match the existing idea folder under `projects/[Project]/` exactly (same spelling and casing as the **Idea** column).
+1. **Inner folder name** must match the existing idea folder under `initiatives/[Initiative]/[Project]/` exactly (same spelling and casing as the **Idea** column).
 2. **Bundle path** at repo root: `archive/{Prefix} - {Idea} - {YYYY-MM-DD}/`
    - **Prefix** should match other `archive/` folders for this initiative when any exist (for example `My Company`, `My Personal Life`). If this is the first bundle for that initiative, use the concise prefix from `SYSTEM_OVERVIEW.md` **Archived items** or the same style as sibling bundles in `archive/`.
 3. Create `archive/{Prefix} - {Idea} - {YYYY-MM-DD}/README.md` using the pattern in existing bundles when any exist. Include **Initiative**, **Project**, **Idea**, **Archived** date, what stayed in the live tree (with relative links), and a **Contents** list.
 
 ### 3. Move lifecycle artifacts and outputs
 
-1. Move the entire directory `initiatives/[Initiative]/projects/[Project]/[Idea]/` into the bundle as `archive/.../[Idea]/`. This includes both the lifecycle stage files and the `outputs/` subfolder if one exists. Prefer a git-aware move so history is preserved (`git mv` when the repo is in good shape).
-2. If **some** files must remain under `projects/` (for example ongoing **sources**), move only the lifecycle subtree (and the `outputs/` folder) and document which paths stayed in the bundle **README** and in the **Done** row **Outcome**.
+1. Move the entire directory `initiatives/[Initiative]/[Project]/[Idea]/` into the bundle as `archive/.../[Idea]/`. This includes both the lifecycle stage files and the `outputs/` subfolder if one exists. Prefer a git-aware move so history is preserved (`git mv` when the repo is in good shape).
+2. If **some** files must remain in the project folder (for example ongoing **sources** at project scope), move only the lifecycle subtree (and the `outputs/` folder) and document which paths stayed in the bundle **README** and in the **Done** row **Outcome**.
 3. Remove the idea row from the active **Project:** table.
 
 ### 4. Record Done
@@ -74,7 +74,7 @@ If **## Done** still has an empty placeholder row, replace or remove placeholder
 
 1. **DASHBOARD.md** - Remove any **Awaiting your approval** row for this idea.
 2. **Final stamps** - If key markdown files remain in the tree, you may add `Completed` or `Approved` notes near the top. For files inside the bundle only, the **README** is enough.
-3. **Broken links** - Search the initiative (and repo root tracker) for links to the old `projects/.../[Idea]/` paths and update them to the archive path or to any replacement live path.
+3. **Broken links** - Search the initiative (and repo root tracker) for links to the old on-disk idea paths and update them to the archive path or to any replacement live path.
 
 ### 6. Wiki
 

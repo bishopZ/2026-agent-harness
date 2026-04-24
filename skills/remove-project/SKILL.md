@@ -3,13 +3,13 @@ name: remove-project
 description: >-
   Remove a project from an initiative. If ideas exist, offers three options for
   each: archive the idea folder, move it to another project, or delete it.
-  Cleans up ideas.md, the projects/ folder, the tracker, and the wiki log.
+  Cleans up ideas.md, the project folder on disk, the tracker, and the wiki log.
   Use when the user wants to remove, retire, close, or dissolve a project.
 ---
 
 # Remove Project
 
-Use this skill when the user wants to **remove a named project** from an initiative. This covers the project row in **Active Projects**, the **## Project:** section in `ideas.md`, and the folder under `projects/`.
+Use this skill when the user wants to **remove a named project** from an initiative. This covers the project row in **Active Projects**, the **## Project:** section in `ideas.md`, and the folder at `initiatives/[Initiative]/[Project Name]/` (a direct child of the initiative, per `SYSTEM_OVERVIEW.md`).
 
 Do not use Trello. Use only files in this repo.
 
@@ -33,7 +33,7 @@ Before making any changes:
 3. Count how many ideas are in it. Separate them into:
    - **Active ideas** - any row whose Status is not `Done` or `Dropped` (includes `Backlog`, `Brief`, `In Review`, `On Hold`, etc.).
    - **Completed or dropped ideas** - rows with Status `Done` or `Dropped`. These are already recorded in the **## Done** or **## Dropped** tables at the bottom and require no further action.
-4. Check whether a `projects/[Project Name]/` folder exists on disk and whether it contains any idea subfolders with lifecycle artifacts.
+4. Check whether `initiatives/[Initiative]/[Project Name]/` exists on disk and whether it contains any idea subfolders with lifecycle artifacts.
 
 ## Step 2 - Handle ideas (stop and ask if any active ideas exist)
 
@@ -47,7 +47,7 @@ If there are **active ideas**, stop and present the following options to the use
 Move the idea's lifecycle folder (if it exists) to `archive/` and record it under **## Dropped** in `ideas.md`. This is the same flow as the **drop-idea** skill. You will need a short reason for the **Dropped** table.
 
 **Option B - Move to another project**
-Reassign the idea row to a different active project in the same initiative. If the idea has a lifecycle folder under `projects/[Old Project]/[Idea]/`, move it to `projects/[New Project]/[Idea]/`. The idea stays active and its status is unchanged.
+Reassign the idea row to a different active project in the same initiative. If the idea has a lifecycle folder under `initiatives/[Initiative]/[Old Project]/[Idea]/`, move it to `initiatives/[Initiative]/[New Project]/[Idea]/`. The idea stays active and its status is unchanged.
 
 **Option C - Delete**
 Remove the idea row and its lifecycle folder entirely, with no archive record. Use only when the user explicitly confirms they want no record kept.
@@ -75,7 +75,7 @@ For each idea the user wants to move:
 
 1. Confirm the destination project exists in the same initiative (it must already be in **Active Projects**). If it does not exist, offer to create it with the **add-project** skill first.
 2. Move the idea row from the **## Project: [Old]** section to the **## Project: [New]** section in `ideas.md`. Keep all column values (Status, Priority, Last updated, Notes) intact. Update **Last updated** to today.
-3. If a `projects/[Old Project]/[Idea]/` folder exists, move it to `projects/[New Project]/[Idea]/` using a git-aware move (`git mv`) to preserve history.
+3. If a `initiatives/[Initiative]/[Old Project]/[Idea]/` folder exists, move it to `initiatives/[Initiative]/[New Project]/[Idea]/` using a git-aware move (`git mv`) to preserve history.
 4. Update any links in `ideas.md`, `DASHBOARD.md`, or wiki files that referenced the old folder path.
 
 ### Option C - Delete
@@ -84,7 +84,7 @@ For each idea the user wants to delete:
 
 1. Confirm once more that the user wants no record. State clearly in chat that this cannot be undone via the skill.
 2. Remove the idea row from `ideas.md`.
-3. Delete the `projects/[Project]/[Idea]/` folder if it exists.
+3. Delete the `initiatives/[Initiative]/[Project]/[Idea]/` folder if it exists.
 4. Remove any **Awaiting your approval** row for it in `DASHBOARD.md`.
 
 ## Step 4 - Remove the project
@@ -97,10 +97,10 @@ Once all ideas are resolved:
    - If the project was completed (all ideas done, work finished): add a row to **## Completed Projects** with the project name, today's date, and a one-line outcome summary.
    - If the project was retired, abandoned, or dissolved: add a row to **## Dropped Projects** with the project name, today's date, and a short reason.
    - Ask the user which applies if it is not obvious.
-4. Remove or archive the `projects/[Project Name]/` folder:
-   - If it is now empty (only `.gitkeep`, `00-how-to-use.md`, or no files), delete it entirely.
+4. Remove or archive `initiatives/[Initiative]/[Project Name]/`:
+   - If it is now empty (only `.gitkeep`, `00-how-to-use.md`, `repo/` placeholder, or no files), delete it entirely.
    - If any files remain (for example a `sources/` or `outputs/` subfolder the user wants to keep), ask the user whether to move those files elsewhere or leave the folder without a project row.
-4. Remove `projects/[Project Name]/00-how-to-use.md` when the folder is being deleted.
+4. Remove `00-how-to-use.md` in that project folder when the folder is being deleted.
 
 ## Step 5 - Wiki and tracker hygiene
 

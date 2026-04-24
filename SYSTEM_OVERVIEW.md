@@ -287,6 +287,7 @@ If two ideas still tie after the score, use tie-breakers in [PRIORITIZATION.md](
       sources/                  ← Immutable source documents (moved here from /raw)
       outputs/                  ← Finished deliverables produced by completed ideas (documents, reports, assets)
       [Project Name]/           ← Matches the Project in ideas.md
+        repo/                   ← Git submodule (only present for projects with an associated repo)
         [Idea Name]/            ← Full lifecycle artifacts from first brief onward
           01_brief.md
           02_pressure_test.md
@@ -325,6 +326,8 @@ If two ideas still tie after the score, use tie-breakers in [PRIORITIZATION.md](
 ```
 
 **Key rules:**
+- `repo/` is an optional git submodule at the **project** folder (`initiatives/[Initiative Name]/[Project Name]/repo/`), present when that project has a separate codebase repository. Add it from the **harness repo root** with `git submodule add <repository-url> "initiatives/[Initiative Name]/[Project Name]/repo"`. The agent cannot run `git submodule add` or configure remotes for you; when a project needs a submodule, it can scaffold guidance and you run the command locally. Once linked, `repo/` has its own Git history and remote—use branches, commits, and pushes there for product code.
+- **Where code changes go:** When `repo/` exists, **all implementation work for that project’s software** (application source, services, app config that belongs in the product repo, etc.) happens **inside `repo/`**, not in the harness tree. Lifecycle Markdown (`01_brief.md` through `05_build/`, wiki, `outputs/` for docs) stays in the harness; the submodule is the canonical home for the codebase. Prefer pushing branches to the submodule’s remote rather than funneling product code through pull requests against this harness repository.
 - `/raw/` is a staging area only. After ingestion, files move to that initiative’s `sources/`.
 - `sources/` is immutable - The Agent reads from these files but never modifies them.
 - `outputs/` holds finished deliverables produced by completed ideas - documents, reports, assets, and any other tangible products of the work. These are distinct from `sources/` (user-supplied input) and from lifecycle artifacts (process scaffolding). When an idea’s product is a document, place the finished file in that idea’s `outputs/` folder and link to it from the Done row in `ideas.md`. Use initiative-level `outputs/` for deliverables that apply across multiple ideas. Do not mix source documents into `outputs/` and do not mix output deliverables into `sources/`.

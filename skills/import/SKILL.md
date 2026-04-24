@@ -27,16 +27,16 @@ initiatives/[Initiative Name]/
   ideas.md
   sources/                        ← initiative-level (immutable after ingestion)
   outputs/                        ← initiative-level deliverables
-  projects/
-    [Project Name]/               ← one folder per project
-      00-how-to-use.md
-      sources/                    ← project-level sources (.gitkeep if empty)
-      outputs/                    ← project-level deliverables (.gitkeep if empty)
-      [Idea Name]/                ← one folder per idea
-        01_brief.md
-        02_pressure_test.md       ← present only if that stage was reached
-        ...
-        outputs/                  ← idea-level deliverables (.gitkeep if empty)
+  [Project Name]/                 ← one folder per project (direct child of initiative)
+    00-how-to-use.md
+    repo/                         ← optional git submodule for this project’s codebase
+    sources/                      ← project-level sources (.gitkeep if empty)
+    outputs/                      ← project-level deliverables (.gitkeep if empty)
+    [Idea Name]/                  ← one folder per idea
+      01_brief.md
+      02_pressure_test.md       ← present only if that stage was reached
+      ...
+      outputs/                    ← idea-level deliverables (.gitkeep if empty)
   wiki/
     index.md
     log.md
@@ -49,7 +49,7 @@ initiatives/[Initiative Name]/
 - `outputs/` is **required** at the project level and at every idea level — always create it if missing (with `.gitkeep`), regardless of whether deliverable files currently exist. Future work will deposit files here.
 - `sources/` is **required** at the project level — always create it if missing (with `.gitkeep`).
 - `sources/` is immutable. Never modify files inside it.
-- Lifecycle artifact folders sit at `initiatives/[Initiative]/projects/[Project Name]/[Idea Name]/`, **not** directly under the initiative or grouped under a bare `projects/` parent that skips the named project folder.
+- Lifecycle artifact folders sit at `initiatives/[Initiative]/[Project Name]/[Idea Name]/`. Project folders are **not** under a `projects/` wrapper — they sit alongside `ideas.md`, `wiki/`, `sources/`, and `outputs/` for that initiative.
 
 ---
 
@@ -64,7 +64,7 @@ The user says they want to import projects, bring in old projects, migrate from 
 Ask the user (or infer from context) which folders are being imported and into which initiative. Resolve:
 
 - **Initiative** - the `initiatives/[Name]/` folder they are importing into. Must exist. Ask once if ambiguous.
-- **Project folder paths** - where the imported folders are on disk right now. They may already be inside `initiatives/[Initiative]/projects/` (user dropped them there), or they may still be elsewhere (user will tell you). If they are not yet under `initiatives/[Initiative]/projects/`, move them there using a git-aware move (`git mv`) before continuing.
+- **Project folder paths** - where the imported folders are on disk right now. They may already be at `initiatives/[Initiative]/[Project Name]/` (user dropped them there), or they may still be elsewhere (user will tell you). If they are not yet in the right place, move them to `initiatives/[Initiative]/[Project Name]/` using a git-aware move (`git mv`) before continuing. If you are upgrading imports from a **v1.x** tree that used `initiatives/.../projects/[Project Name]/`, move up one level to the flat layout first.
 
 List all the project folders you found and confirm the initiative with the user before making any changes.
 
@@ -117,7 +117,7 @@ Before writing any files, show the user a summary table. Use this format:
 
 ```
 Project: [Name]
-  Folder:          initiatives/[Initiative]/projects/[Name]/
+  Folder:          initiatives/[Initiative]/[Name]/
   ideas.md status: not registered / already registered / conflict
   Issues found:
     - [list each issue from Step 2]
@@ -179,12 +179,12 @@ If the imported `ideas.md` (from the old system) has rows in **## Done** or **##
 
 Apply every repair flagged in Steps 2b and 2c. Work through this checklist for every imported project:
 
-**Project level** (`initiatives/[Initiative]/projects/[Project Name]/`):
+**Project level** (`initiatives/[Initiative]/[Project Name]/`):
 - If `sources/` is missing: create it with `.gitkeep`.
 - If `outputs/` is missing: create it with `.gitkeep`. This is **always required** — do not skip it because no deliverable files exist yet.
 - If `00-how-to-use.md` is missing: create it now (see **`00-how-to-use.md`** section below).
 
-**Idea level** (`initiatives/[Initiative]/projects/[Project Name]/[Idea Name]/`):
+**Idea level** (`initiatives/[Initiative]/[Project Name]/[Idea Name]/`):
 - If `outputs/` is missing inside any idea folder: create it with `.gitkeep`. This is **always required** for every idea folder, not only for ideas with existing deliverables.
 
 List every folder and file created in your completion summary.
@@ -220,9 +220,9 @@ Issues requiring user review: [list or "none"]
 
 Create this only when the project folder lacks one. Keep it short:
 
-- One line stating all idea work for this project lives under `projects/[Project Name]/[Idea Name]/`.
-- A link to the initiative's `ideas.md` at `../../ideas.md`.
-- Links to `SYSTEM_OVERVIEW.md` and `IDEA_LIFECYCLE.md` at the repo root. The file lives at `initiatives/[Initiative]/projects/[Project Name]/00-how-to-use.md`, so the repo root is four levels up: `../../../../SYSTEM_OVERVIEW.md`.
+- One line stating all idea work for this project lives under `initiatives/[Initiative]/[Project Name]/[Idea Name]/` (or relative: `[Project Name]/[Idea Name]/` from the initiative root).
+- A link to the initiative's `ideas.md` at `../ideas.md`.
+- Links to `SYSTEM_OVERVIEW.md` and `IDEA_LIFECYCLE.md` at the repo root. The file lives at `initiatives/[Initiative]/[Project Name]/00-how-to-use.md`, so the repo root is three levels up: `../../../SYSTEM_OVERVIEW.md`.
 
 ---
 
@@ -249,5 +249,5 @@ After all changes are written:
 - Do not import into an initiative that does not exist. Ask the user which initiative to use.
 - **Always create `outputs/`** at both the project level and every idea level. Never skip `outputs/` creation because no deliverable files exist yet — the folder is required by the system regardless.
 - **Always create `sources/`** at the project level even if no source documents exist yet.
-- Project folders must live under `initiatives/[Initiative]/projects/[Project Name]/`, not directly under the initiative root or nested inside a bare `projects/` folder that lacks the named project subfolder.
+- Project folders must live at `initiatives/[Initiative]/[Project Name]/`, not under a legacy `projects/` subfolder. If imports still use the old `.../projects/<Project>/` path from v1.x, re-home them to the flat layout before registering.
 - If the imported folder contains a `wiki/` subfolder, do not merge it automatically into the current initiative wiki. Flag it and ask the user whether to merge, ingest as sources, or leave it in place.
