@@ -13,6 +13,15 @@ Version numbers follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html
 
 ## [Unreleased]
 
+## Added
+
+- Added history folders to enhance scalability and reduce the size of the individual ideas.md files.
+
+## Changed
+
+- Clarified project language across system docs and skills: projects now use **Closed Projects** instead of **Dropped Projects**.
+- Updated project and initiative removal guidance to prefer **remove/close** wording, while keeping idea-level `Done` and `Dropped` states unchanged.
+
 ---
 
 ## [2.0.0] — 2026-04-23

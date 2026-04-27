@@ -38,12 +38,15 @@ Lifecycle artifacts (`01_brief.md`, `02_pressure_test.md`, and so on) stay the *
 | `PRIORITIZATION.md` | Combined score (staleness + initiative tier + project + idea), tie-breakers, and how to pick the next idea (excluding blocked work). **Tier points** are **not** edited here. |
 | `IDEA_LIFECYCLE.md` | Defines every stage an idea moves through, with templates and approval criteria. References the `rules/` and `agents/` folders at each gate. |
 | `DASHBOARD.md` | Dashboard for all initiatives, **Initiative priority** (**tier points**, high to low), and the **Awaiting your approval** queue. |
-| `initiatives/[Initiative Name]/ideas.md` | Per-initiative inventory. **Active Projects** table (with project **Priority**), ideas grouped by project, lifecycle status, Done, Dropped, and project history (Completed Projects, Dropped Projects). |
+| `initiatives/[Initiative Name]/ideas.md` | Per-initiative inventory. **Active Projects** table (with project **Priority**), ideas grouped by project, lifecycle status, and project history (`## Closed Projects`). `## Done` and `## Dropped` are link-only pointers to idea-level history files. |
 | `USER.md` | Context about you - preferences, background, working style. The agent reads this to stay oriented. |
 | [`rules/README.md`](rules/README.md) | **Rules index** - six cross-cutting operating rules that apply across every stage: evidence-and-verification, incremental-execution, context-engineering, decision-records, anti-rationalization, and red-flags. |
 | [`agents/README.md`](agents/README.md) | **Agent profiles index** - three specialist review personas (`quality-reviewer`, `evaluator`, `risk-auditor`) invoked at specific gates in the lifecycle. |
 | [`skills/next-idea/SKILL.md`](skills/next-idea/SKILL.md) | **next-idea skill** - invoke when you want the agent to pick the highest-priority idea and step it forward. Contains the execution protocol, file-keeping rules, wiki rules, prioritization procedure, and approval pattern. |
 | [`skills/add-idea/SKILL.md`](skills/add-idea/SKILL.md) | **add-idea skill** - invoke when you want to capture a new idea. Handles initiative/project routing, row format, rich content files, new project scaffolding, and `00-how-to-use.md` creation. |
+| [`skills/drop-idea/SKILL.md`](skills/drop-idea/SKILL.md) | **drop-idea skill** - drops an idea, archives artifacts when needed, and records rationale in `history/dropped-history.md`. |
+| [`skills/remove-project/SKILL.md`](skills/remove-project/SKILL.md) | **remove-project skill** - project closure/removal workflow (archive/move/delete idea handling + project cleanup). |
+| [`skills/remove-initiative/SKILL.md`](skills/remove-initiative/SKILL.md) | **remove-initiative skill** - initiative retirement/removal workflow with archive safeguards. |
 | [`VERSION`](VERSION) | Single-line file holding the current system version (e.g. `1.0.0`). Bump this when you release a change. |
 | [`CHANGELOG.md`](CHANGELOG.md) | Append-only record of every system release in [Keep a Changelog](https://keepachangelog.com) format. |
 
@@ -222,7 +225,7 @@ At certain gates, The Agent adopts one of three specialist profiles from [`agent
 
 ### Project priority
 
-The **Active Projects** table at the top of each initiative’s `ideas.md` lists only currently active projects. Each row has **Project**, **Purpose**, and **Priority**. When a project is completed or retired, its row moves out of this table and into **## Completed Projects** or **## Dropped Projects** at the bottom of the file. **Priority** ranks whole projects so every idea under that project inherits the same project layer in the combined score (see [PRIORITIZATION.md](PRIORITIZATION.md)).
+The **Active Projects** table at the top of each initiative’s `ideas.md` lists only currently active projects. Each row has **Project**, **Purpose**, and **Priority**. When a project is no longer active, its row moves out of this table and into **## Closed Projects** at the bottom of the file. **Priority** ranks whole projects so every idea under that project inherits the same project layer in the combined score (see [PRIORITIZATION.md](PRIORITIZATION.md)).
 
 You may set **Priority** using words or numbers (same meaning either way).
 
@@ -283,7 +286,10 @@ If two ideas still tie after the score, use tie-breakers in [PRIORITIZATION.md](
 
   /initiatives/
     [Initiative Name]/
-      ideas.md                  ← All ideas for this initiative (by project), Done, Dropped
+      ideas.md                  ← Active inventory + project history; Done/Dropped link to history files
+      history/
+        done-history.md         ← Long-form completed-idea records
+        dropped-history.md      ← Long-form dropped-idea records
       sources/                  ← Immutable source documents (moved here from /raw)
       outputs/                  ← Finished deliverables produced by completed ideas (documents, reports, assets)
       [Project Name]/           ← Matches the Project in ideas.md
@@ -330,14 +336,14 @@ If two ideas still tie after the score, use tie-breakers in [PRIORITIZATION.md](
 - **Where code changes go:** When `repo/` exists, **all implementation work for that project’s software** (application source, services, app config that belongs in the product repo, etc.) happens **inside `repo/`**, not in the harness tree. Lifecycle Markdown (`01_brief.md` through `05_build/`, wiki, `outputs/` for docs) stays in the harness; the submodule is the canonical home for the codebase. Prefer pushing branches to the submodule’s remote rather than funneling product code through pull requests against this harness repository.
 - `/raw/` is a staging area only. After ingestion, files move to that initiative’s `sources/`.
 - `sources/` is immutable - The Agent reads from these files but never modifies them.
-- `outputs/` holds finished deliverables produced by completed ideas - documents, reports, assets, and any other tangible products of the work. These are distinct from `sources/` (user-supplied input) and from lifecycle artifacts (process scaffolding). When an idea’s product is a document, place the finished file in that idea’s `outputs/` folder and link to it from the Done row in `ideas.md`. Use initiative-level `outputs/` for deliverables that apply across multiple ideas. Do not mix source documents into `outputs/` and do not mix output deliverables into `sources/`.
+- `outputs/` holds finished deliverables produced by completed ideas - documents, reports, assets, and any other tangible products of the work. These are distinct from `sources/` (user-supplied input) and from lifecycle artifacts (process scaffolding). When an idea’s product is a document, place the finished file in that idea’s `outputs/` folder and link to it from `history/done-history.md` (with only a compact pointer in `ideas.md`). Use initiative-level `outputs/` for deliverables that apply across multiple ideas. Do not mix source documents into `outputs/` and do not mix output deliverables into `sources/`.
 - `wiki/` is entirely The Agent-maintained - you read it, The Agent writes and updates it.
 - `wiki/.archive/` holds retired pages - never delete, always archive.
 - Lifecycle artifact folders live at `initiatives/[Initiative Name]/[Project Name]/[Idea Name]/` and hold the full lifecycle from `01_brief.md` onward.
 - `05_build_plan.md` is the approved plan from gate 6a. `05_build/` is the working folder for slice execution (6b) and Build Review (6c). `05_build/verification_log.md` accumulates evidence across all slices and is the primary artifact Evaluation maps against the PRD's P0 acceptance criteria.
 - `05_build/decisions.md` holds ADRs for any Design- or Build-time direction-setting choice. ADRs follow [`rules/decision-records.md`](rules/decision-records.md) — supersede, don't edit, when a decision changes.
 - `/rules/` and `/agents/` are **system-level** resources - they apply to every initiative, not to any single idea. Do not copy rule or profile files into an initiative folder; reference them in place.
-- Completed or dropped work moves to `/archive/` when you take artifacts off the main tree. Completed and dropped ideas stay recorded in each initiative’s `ideas.md`. When archiving, move the lifecycle artifacts and `outputs/` folder together so deliverables stay with the work that produced them.
+- Completed or dropped work moves to `/archive/` when you take artifacts off the main tree. Completed and dropped ideas stay recorded in each initiative’s `history/done-history.md` and `history/dropped-history.md`, with `ideas.md` linking to those files. When archiving, move the lifecycle artifacts and `outputs/` folder together so deliverables stay with the work that produced them.
 
 ---
 
