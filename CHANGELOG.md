@@ -13,6 +13,10 @@ Version numbers follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html
 
 ## [Unreleased]
 
+## Added
+
+- Added history folders to enhance scalability and reduce the size of the individual ideas.md files.
+
 ---
 
 ## [2.0.0] — 2026-04-23
