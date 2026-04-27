@@ -11,6 +11,8 @@ description: >-
 
 Use this skill when the user wants to **remove a named project** from an initiative. This covers the project row in **Active Projects**, the **## Project:** section in `ideas.md`, and the folder at `initiatives/[Initiative]/[Project Name]/` (a direct child of the initiative, per `SYSTEM_OVERVIEW.md`).
 
+Treat this as the project-level **drop-project** workflow.
+
 Do not use Trello. Use only files in this repo.
 
 Follow `SYSTEM_OVERVIEW.md` (archive rules, naming conventions), and the target initiative's `ideas.md`.
@@ -32,7 +34,7 @@ Before making any changes:
 2. Find the **## Project: [Name]** section.
 3. Count how many ideas are in it. Separate them into:
    - **Active ideas** - any row whose Status is not `Done` or `Dropped` (includes `Backlog`, `Brief`, `In Review`, `On Hold`, etc.).
-   - **Completed or dropped ideas** - rows with Status `Done` or `Dropped`. These are already recorded in the **## Done** or **## Dropped** tables at the bottom and require no further action.
+  - **Completed or dropped ideas** - rows with Status `Done` or `Dropped`. These should already be recorded in `history/done-history.md` or `history/dropped-history.md` and require no further action.
 4. Check whether `initiatives/[Initiative]/[Project Name]/` exists on disk and whether it contains any idea subfolders with lifecycle artifacts.
 
 ## Step 2 - Handle ideas (stop and ask if any active ideas exist)
@@ -44,7 +46,7 @@ If there are **active ideas**, stop and present the following options to the use
 ---
 
 **Option A - Archive**
-Move the idea's lifecycle folder (if it exists) to `archive/` and record it under **## Dropped** in `ideas.md`. This is the same flow as the **drop-idea** skill. You will need a short reason for the **Dropped** table.
+Move the idea's lifecycle folder (if it exists) to `archive/` and record it in `history/dropped-history.md`. This is the same flow as the **drop-idea** skill. You will need a short reason for the dropped-history record.
 
 **Option B - Move to another project**
 Reassign the idea row to a different active project in the same initiative. If the idea has a lifecycle folder under `initiatives/[Initiative]/[Old Project]/[Idea]/`, move it to `initiatives/[Initiative]/[New Project]/[Idea]/`. The idea stays active and its status is unchanged.
@@ -66,7 +68,7 @@ For each idea the user wants to archive:
 
 1. Follow the full **drop-idea** workflow (see `skills/drop-idea/SKILL.md`) for each idea individually. Use the project removal as the reason if the user does not supply a specific one.
 2. Move the idea's lifecycle folder to an `archive/` bundle at the repo root. Include the `outputs/` subfolder in the move - finished deliverables travel with the work that produced them.
-3. Record the idea under **## Dropped** in `ideas.md`.
+3. Record the idea in `history/dropped-history.md` (keep `ideas.md` as link-only for dropped history).
 4. Remove any **Awaiting your approval** row for it in `DASHBOARD.md`.
 
 ### Option B - Move to another project
@@ -121,5 +123,5 @@ Once all ideas are resolved:
 - Never remove the **General** project from an initiative without explicit confirmation. It is the default bucket and removing it can leave ungrouped ideas with no home.
 - Do not silently delete idea folders. Always present Option A / B / C for active ideas and wait for the user's choice.
 - Do not delete wiki pages. Retire obsolete pages to `wiki/.archive/` only.
-- The **## Done** and **## Dropped** idea tables are only modified when archiving an active idea via Option A (which adds a row to **## Dropped**). The **## Completed Projects** and **## Dropped Projects** tables are updated in Step 4 when the project itself is retired.
+- `ideas.md` **## Done** and **## Dropped** sections should remain link-only pointers to history files. Record idea-level history in `history/done-history.md` and `history/dropped-history.md`. The **## Completed Projects** and **## Dropped Projects** tables are updated in Step 4 when the project itself is retired.
 - Keep **Project** and folder names aligned at all times. If a move is partial (for example disk folder moved but table row not yet updated), finish the table update before summarizing.

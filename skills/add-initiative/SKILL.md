@@ -31,6 +31,9 @@ Do not create an initiative that already exists. If the name would conflict with
 ```
 initiatives/[Initiative Name]/
   ideas.md
+  history/
+    done-history.md
+    dropped-history.md
   sources/         (with .gitkeep)
   outputs/         (with .gitkeep)
   General/         (default project; .gitkeep if empty)
@@ -76,17 +79,13 @@ Add rows here when you create named projects. **Project** names should match fol
 
 ## Done
 
-| Idea | Project | Completed | Outcome |
-|---|---|---|---|
-| | | | |
+Full historical log lives in [history/done-history.md](history/done-history.md).
 
 ---
 
 ## Dropped
 
-| Idea | Project | Date | Reason |
-|---|---|---|---|
-| | | | |
+Full historical log lives in [history/dropped-history.md](history/dropped-history.md).
 
 ---
 
@@ -103,6 +102,28 @@ Add rows here when you create named projects. **Project** names should match fol
 | Project | Date | Reason |
 |---|---|---|
 | | | |
+```
+
+### `history/done-history.md`
+
+```markdown
+# [Initiative Name] Done History
+
+Long-form records for completed ideas.
+
+| Idea | Project | Completed | Outcome |
+|---|---|---|---|
+```
+
+### `history/dropped-history.md`
+
+```markdown
+# [Initiative Name] Dropped History
+
+Long-form records for dropped ideas.
+
+| Idea | Project | Date | Reason |
+|---|---|---|---|
 ```
 
 ### `wiki/index.md`

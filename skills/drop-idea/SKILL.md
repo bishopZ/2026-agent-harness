@@ -1,14 +1,14 @@
 ---
 name: drop-idea
 description: >-
-  Kill an idea, record it under Dropped in ideas.md, move lifecycle artifacts to
-  repo archive/ when present, update tracker and wiki. Use when the user drops,
-  kills, or abandons an idea, or says no-go.
+  Kill an idea, record it in history/dropped-history.md, move lifecycle artifacts
+  to repo archive/ when present, update tracker and wiki. Use when the user
+  drops, kills, or abandons an idea, or says no-go.
 ---
 
 # Drop Idea
 
-Use this skill when the user wants to **kill** an idea and record it under **Dropped**, including **archive** handling and durable wiki notes when they matter.
+Use this skill when the user wants to **kill** an idea and record it in `history/dropped-history.md`, including **archive** handling and durable wiki notes when they matter.
 
 Do not use Trello. Only use files in this repo.
 
@@ -28,7 +28,7 @@ Resolve from the user and files:
 If there is only an `ideas.md` row and **no** `initiatives/[Initiative]/[Project]/[Idea]/` folder:
 
 1. Remove the row from its **Project:** section.
-2. Append a row to **## Dropped** with **Idea**, **Project**, **Date**, **Reason**.
+2. Append a row to `history/dropped-history.md` with **Idea**, **Project**, **Date**, **Reason**.
 3. Remove any matching row from **Awaiting your approval** in `DASHBOARD.md`.
 4. Set **Last initiative work** when this session reflects real progress on the initiative.
 5. Skip filesystem archive steps unless the user asks to retain notes elsewhere.
@@ -58,7 +58,7 @@ Run in order.
 
 ### 4. Record Dropped
 
-Add a row to **## Dropped**:
+Add a row to `history/dropped-history.md`:
 
 | Column | Content |
 | --- | --- |
@@ -67,7 +67,7 @@ Add a row to **## Dropped**:
 | **Date** | `YYYY-MM-DD` |
 | **Reason** | Clear rationale, plus links to archive bundle and any wiki page |
 
-Replace empty placeholder rows in **## Dropped** if the file still uses them so the table stays valid.
+Keep `ideas.md` `## Dropped` as a link-only section. Do not add long dropped rows to `ideas.md`.
 
 ### 5. Dashboard and links
 
@@ -94,6 +94,6 @@ Update **Last initiative work** for that initiative when appropriate.
 
 ## Guardrails
 
-- **Dropped** ideas stay on file for reference. Do not erase history without explicit user request beyond normal archive moves.
+- **Dropped** ideas stay on file for reference in `history/dropped-history.md`. Do not erase history without explicit user request beyond normal archive moves.
 - Keep **Project** and **Idea** names aligned with folders and tables.
 - Do not use this skill for **Done** (use **complete-idea**) or for **On Hold** (keep the row and add a pause note per `IDEA_LIFECYCLE.md`).

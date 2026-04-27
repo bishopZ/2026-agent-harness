@@ -173,7 +173,7 @@ For each idea subfolder:
 
 ### 4c - Handle Done and Dropped ideas
 
-If the imported `ideas.md` (from the old system) has rows in **## Done** or **## Dropped** sections, copy those rows into the current initiative's `ideas.md` **## Done** and **## Dropped** tables. Do not duplicate rows that already exist.
+If the imported `ideas.md` (from the old system) has rows in **## Done** or **## Dropped** sections, copy those rows into the current initiative's `history/done-history.md` and `history/dropped-history.md` tables. Do not duplicate rows that already exist.
 
 ### 4d - Create missing folder structure
 
@@ -245,7 +245,7 @@ After all changes are written:
 - Never modify files inside any `sources/` folder. They are immutable after ingestion.
 - Do not silently resolve name collisions. Always ask when an imported project name matches an existing one.
 - Do not silently upgrade or downgrade idea statuses based on artifacts alone. Flag drift and ask; the user decides.
-- Do not delete rows from **## Done** or **## Dropped** even if they look stale.
+- Do not delete rows from `history/done-history.md` or `history/dropped-history.md` even if they look stale.
 - Do not import into an initiative that does not exist. Ask the user which initiative to use.
 - **Always create `outputs/`** at both the project level and every idea level. Never skip `outputs/` creation because no deliverable files exist yet — the folder is required by the system regardless.
 - **Always create `sources/`** at the project level even if no source documents exist yet.

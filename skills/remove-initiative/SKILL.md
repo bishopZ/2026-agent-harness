@@ -11,6 +11,8 @@ description: >-
 
 Use this skill when the user wants to **remove an initiative** entirely from the repo.
 
+Treat this as the initiative-level **drop-initiative** workflow.
+
 Do not use Trello. Use only files in this repo.
 
 Follow `SYSTEM_OVERVIEW.md` (archive rules, naming conventions) and `DASHBOARD.md` for the current initiative stack.

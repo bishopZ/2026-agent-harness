@@ -28,17 +28,13 @@ Add rows here when you create named projects. **Project** names should match fol
 
 ## Done
 
-| Idea | Project | Completed | Outcome |
-|---|---|---|---|
-| | | | |
+Full historical log lives in [history/done-history.md](history/done-history.md).
 
 ---
 
 ## Dropped
 
-| Idea | Project | Date | Reason |
-|---|---|---|---|
-| | | | |
+Full historical log lives in [history/dropped-history.md](history/dropped-history.md).
 
 ---
 

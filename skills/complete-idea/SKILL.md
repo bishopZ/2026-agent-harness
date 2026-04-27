@@ -2,14 +2,14 @@
 name: complete-idea
 description: >-
   Mark an idea as finished, move lifecycle artifacts and outputs/ to repo
-  archive/, update ideas.md Done section with links to deliverables, tracker,
+  archive/, update history/done-history.md with links to deliverables, tracker,
   and wiki. Use when the user says an idea is complete, done, shipped, or
   finished, or asks to close an idea successfully.
 ---
 
 # Complete Idea
 
-Use this skill when the user wants to **finish** an idea and record it under **Done**, including **archive** handling when a lifecycle folder exists.
+Use this skill when the user wants to **finish** an idea and record it in `history/done-history.md`, including **archive** handling when a lifecycle folder exists.
 
 Do not use Trello. Only use files in this repo.
 
@@ -29,7 +29,7 @@ Resolve from the user and files:
 If the idea only has a row in `ideas.md` and **no** `initiatives/[Initiative]/[Project]/[Idea]/` folder:
 
 1. Remove the row from its **Project:** section.
-2. Append a row to **## Done** with **Idea**, **Project**, **Completed**, **Outcome**.
+2. Append a row to `history/done-history.md` with **Idea**, **Project**, **Completed**, **Outcome**.
 3. Remove any matching row from **Awaiting your approval** in `DASHBOARD.md`.
 4. Set **Last initiative work** to **Completed date** for that initiative when this session closed real work.
 5. Skip archive directory steps. Summarize what you changed.
@@ -59,7 +59,7 @@ Run in order.
 
 ### 4. Record Done
 
-Add a row to **## Done**:
+Add a row to `history/done-history.md`:
 
 | Column | Content |
 | --- | --- |
@@ -68,7 +68,7 @@ Add a row to **## Done**:
 | **Completed** | `YYYY-MM-DD` |
 | **Outcome** | User-facing summary, links to finished deliverables in `outputs/` (relative paths from `ideas.md`), and a link to the archive bundle (URL-encoded paths as in existing `ideas.md` rows) |
 
-If **## Done** still has an empty placeholder row, replace or remove placeholders so the table stays valid.
+Keep `ideas.md` `## Done` as a link-only section. Do not append long done rows to `ideas.md`.
 
 ### 5. Dashboard and artifacts hygiene
 

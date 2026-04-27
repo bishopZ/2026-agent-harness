@@ -432,7 +432,7 @@ The results are written into `05_build/README.md` and any Critical / High findin
   outputs/                      ← finished deliverables (documents, reports, code artifacts, assets)
 ```
 
-When the project has `repo/`, the **implemented code** for slices lives in that submodule; `05_build/slices/` still records what changed, acceptance, and evidence. Working files and drafts stay in `05_build/`. When the build produces a finished deliverable (a document, report, asset, or other tangible output), place it in the idea's `outputs/` folder. Link to output files from the Done row in `ideas.md` when the idea completes.
+When the project has `repo/`, the **implemented code** for slices lives in that submodule; `05_build/slices/` still records what changed, acceptance, and evidence. Working files and drafts stay in `05_build/`. When the build produces a finished deliverable (a document, report, asset, or other tangible output), place it in the idea's `outputs/` folder. Link to output files from `history/done-history.md` when the idea completes.
 
 **Wiki update:** Key technical decisions, architectural choices, and lessons from the build are captured in the `operations/` domain (business / personal brand) or `craft/` (creative). ADRs that rise above per-idea scope are also promoted into `wiki/strategy/` or the domain most relevant to the decision.
 
