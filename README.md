@@ -1,12 +1,12 @@
 # 2026 Agent Harness v2.0
 
-![Version](https://img.shields.io/badge/version-2.0.0-blue) [![Changelog](https://img.shields.io/badge/changelog-CHANGELOG.md-informational)](CHANGELOG.md)
+Version [Changelog](CHANGELOG.md)
 
 - Lifecycle Management for every idea
 - Memory with Knowledge Management
 - Human-in-the-loop gating
 - Automatic prioritization
-- Self-healing
+- Adaptive and Self-healing
 
 Together these form the harness, the operating system for the work. The agent is the emergent execution behavior that runs inside this structure when you follow the documented skills and file rules.
 
@@ -241,7 +241,7 @@ That's all. Import complete!
 
 See [CHANGELOG.md](CHANGELOG.md) for a full record of what changed in each release.
 
-The current system version is tracked in [`VERSION`](VERSION). Version numbers follow [Semantic Versioning](https://semver.org/):
+The current system version is tracked in `[VERSION](VERSION)`. Version numbers follow [Semantic Versioning](https://semver.org/):
 
 - **MAJOR** — breaking changes to file structure, stage names, scoring formula, or naming conventions that require migrating existing initiative data.
 - **MINOR** — new skills, lifecycle stages, wiki domain types, or system documents (backward-compatible).
