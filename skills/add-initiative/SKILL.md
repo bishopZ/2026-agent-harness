@@ -89,17 +89,9 @@ Full historical log lives in [history/dropped-history.md](history/dropped-histor
 
 ---
 
-## Completed Projects
+## Closed Projects
 
-| Project | Completed | Outcome |
-|---|---|---|
-| | | |
-
----
-
-## Dropped Projects
-
-| Project | Date | Reason |
+| Project | Closed | Closure summary |
 |---|---|---|
 | | | |
 ```

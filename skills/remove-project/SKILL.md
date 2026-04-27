@@ -11,7 +11,7 @@ description: >-
 
 Use this skill when the user wants to **remove a named project** from an initiative. This covers the project row in **Active Projects**, the **## Project:** section in `ideas.md`, and the folder at `initiatives/[Initiative]/[Project Name]/` (a direct child of the initiative, per `SYSTEM_OVERVIEW.md`).
 
-Treat this as the project-level **drop-project** workflow.
+Treat this as the project-level closure/removal workflow.
 
 Do not use Trello. Use only files in this repo.
 
@@ -95,14 +95,16 @@ Once all ideas are resolved:
 
 1. Remove the **## Project: [Name]** section from `ideas.md`. If it still has placeholder rows (empty or `*(Add ideas here)*`), remove those too.
 2. Remove the project row from **## Projects**.
-3. Add a row to the history table at the bottom of `ideas.md`:
-   - If the project was completed (all ideas done, work finished): add a row to **## Completed Projects** with the project name, today's date, and a one-line outcome summary.
-   - If the project was retired, abandoned, or dissolved: add a row to **## Dropped Projects** with the project name, today's date, and a short reason.
-   - Ask the user which applies if it is not obvious.
-4. Remove or archive `initiatives/[Initiative]/[Project Name]/`:
+3. Add a row to **## Closed Projects** at the bottom of `ideas.md` with:
+   - Project name
+   - Today's date
+   - A short closure summary (outcome and/or reason)
+   - Ask the user for wording if it is not obvious.
+4. If the initiative uses a project-level history file, append the same closure record in `history/`.
+5. Remove or archive `initiatives/[Initiative]/[Project Name]/`:
    - If it is now empty (only `.gitkeep`, `00-how-to-use.md`, `repo/` placeholder, or no files), delete it entirely.
    - If any files remain (for example a `sources/` or `outputs/` subfolder the user wants to keep), ask the user whether to move those files elsewhere or leave the folder without a project row.
-4. Remove `00-how-to-use.md` in that project folder when the folder is being deleted.
+6. Remove `00-how-to-use.md` in that project folder when the folder is being deleted.
 
 ## Step 5 - Wiki and tracker hygiene
 
@@ -123,5 +125,5 @@ Once all ideas are resolved:
 - Never remove the **General** project from an initiative without explicit confirmation. It is the default bucket and removing it can leave ungrouped ideas with no home.
 - Do not silently delete idea folders. Always present Option A / B / C for active ideas and wait for the user's choice.
 - Do not delete wiki pages. Retire obsolete pages to `wiki/.archive/` only.
-- `ideas.md` **## Done** and **## Dropped** sections should remain link-only pointers to history files. Record idea-level history in `history/done-history.md` and `history/dropped-history.md`. The **## Completed Projects** and **## Dropped Projects** tables are updated in Step 4 when the project itself is retired.
+- `ideas.md` **## Done** and **## Dropped** sections should remain link-only pointers to history files. Record idea-level history in `history/done-history.md` and `history/dropped-history.md`. The **## Closed Projects** table is updated in Step 4 when the project is closed.
 - Keep **Project** and folder names aligned at all times. If a move is partial (for example disk folder moved but table row not yet updated), finish the table update before summarizing.

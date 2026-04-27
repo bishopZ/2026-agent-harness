@@ -38,15 +38,15 @@ Lifecycle artifacts (`01_brief.md`, `02_pressure_test.md`, and so on) stay the *
 | `PRIORITIZATION.md` | Combined score (staleness + initiative tier + project + idea), tie-breakers, and how to pick the next idea (excluding blocked work). **Tier points** are **not** edited here. |
 | `IDEA_LIFECYCLE.md` | Defines every stage an idea moves through, with templates and approval criteria. References the `rules/` and `agents/` folders at each gate. |
 | `DASHBOARD.md` | Dashboard for all initiatives, **Initiative priority** (**tier points**, high to low), and the **Awaiting your approval** queue. |
-| `initiatives/[Initiative Name]/ideas.md` | Per-initiative inventory. **Active Projects** table (with project **Priority**), ideas grouped by project, lifecycle status, and project history (Completed Projects, Dropped Projects). `## Done` and `## Dropped` are link-only pointers to history files. |
+| `initiatives/[Initiative Name]/ideas.md` | Per-initiative inventory. **Active Projects** table (with project **Priority**), ideas grouped by project, lifecycle status, and project history (`## Closed Projects`). `## Done` and `## Dropped` are link-only pointers to idea-level history files. |
 | `USER.md` | Context about you - preferences, background, working style. The agent reads this to stay oriented. |
 | [`rules/README.md`](rules/README.md) | **Rules index** - six cross-cutting operating rules that apply across every stage: evidence-and-verification, incremental-execution, context-engineering, decision-records, anti-rationalization, and red-flags. |
 | [`agents/README.md`](agents/README.md) | **Agent profiles index** - three specialist review personas (`quality-reviewer`, `evaluator`, `risk-auditor`) invoked at specific gates in the lifecycle. |
 | [`skills/next-idea/SKILL.md`](skills/next-idea/SKILL.md) | **next-idea skill** - invoke when you want the agent to pick the highest-priority idea and step it forward. Contains the execution protocol, file-keeping rules, wiki rules, prioritization procedure, and approval pattern. |
 | [`skills/add-idea/SKILL.md`](skills/add-idea/SKILL.md) | **add-idea skill** - invoke when you want to capture a new idea. Handles initiative/project routing, row format, rich content files, new project scaffolding, and `00-how-to-use.md` creation. |
 | [`skills/drop-idea/SKILL.md`](skills/drop-idea/SKILL.md) | **drop-idea skill** - drops an idea, archives artifacts when needed, and records rationale in `history/dropped-history.md`. |
-| [`skills/drop-project/SKILL.md`](skills/drop-project/SKILL.md) | **drop-project skill** - project-level drop workflow (archive/move/delete idea handling + project retirement). |
-| [`skills/drop-initiative/SKILL.md`](skills/drop-initiative/SKILL.md) | **drop-initiative skill** - initiative-level retirement/removal workflow with archive safeguards. |
+| [`skills/remove-project/SKILL.md`](skills/remove-project/SKILL.md) | **remove-project skill** - project closure/removal workflow (archive/move/delete idea handling + project cleanup). |
+| [`skills/remove-initiative/SKILL.md`](skills/remove-initiative/SKILL.md) | **remove-initiative skill** - initiative retirement/removal workflow with archive safeguards. |
 | [`VERSION`](VERSION) | Single-line file holding the current system version (e.g. `1.0.0`). Bump this when you release a change. |
 | [`CHANGELOG.md`](CHANGELOG.md) | Append-only record of every system release in [Keep a Changelog](https://keepachangelog.com) format. |
 
@@ -225,7 +225,7 @@ At certain gates, The Agent adopts one of three specialist profiles from [`agent
 
 ### Project priority
 
-The **Active Projects** table at the top of each initiative’s `ideas.md` lists only currently active projects. Each row has **Project**, **Purpose**, and **Priority**. When a project is completed or retired, its row moves out of this table and into **## Completed Projects** or **## Dropped Projects** at the bottom of the file. **Priority** ranks whole projects so every idea under that project inherits the same project layer in the combined score (see [PRIORITIZATION.md](PRIORITIZATION.md)).
+The **Active Projects** table at the top of each initiative’s `ideas.md` lists only currently active projects. Each row has **Project**, **Purpose**, and **Priority**. When a project is no longer active, its row moves out of this table and into **## Closed Projects** at the bottom of the file. **Priority** ranks whole projects so every idea under that project inherits the same project layer in the combined score (see [PRIORITIZATION.md](PRIORITIZATION.md)).
 
 You may set **Priority** using words or numbers (same meaning either way).
 
