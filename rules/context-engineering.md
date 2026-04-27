@@ -95,7 +95,7 @@ At session start, provide a structured block:
 
 ```
 PROJECT CONTEXT:
-- Initiative: Time2Magic - Company
+- Initiative: Time2Magic
 - Idea: Love Street → Competitive research
 - Current stage: Research (Part 1 — Market)
 - Prior artifacts: 01_brief.md (approved 2026-04-03)
