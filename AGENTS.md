@@ -29,7 +29,7 @@ There are no dependencies to install, no servers to start, and no build or test 
 1. Read `USER.md` first for user context.
 2. Read `SYSTEM_OVERVIEW.md` for the full system design.
 3. Read `IDEA_LIFECYCLE.md` when advancing an idea through stages. Load the rule files it cites at each stage; load the agent profiles it cites at each gate.
-4. At Build, follow the Plan → Slice → Verify cycle in `rules/incremental-execution.md`. Every slice has an entry in `05_build/verification_log.md`.
+4. At Build, follow the Plan → Slice → Verify cycle in `rules/incremental-execution.md`. Treat checkpoints in `05_build_plan.md` as **session boundaries**: complete each checkpoint **Closure checklist** and stop before the next task unless the user explicitly continues — see `SYSTEM_OVERVIEW.md` (**Build checkpoint discipline**). Every slice has an entry in `05_build/verification_log.md`.
 5. At any gate that involves user-facing output or sensitive data, run `agents/risk-auditor.md`. At end of Build and at Evaluation, run `agents/quality-reviewer.md` and `agents/evaluator.md`.
 6. Never delete wiki pages. Archive them to `wiki/.archive/` instead.
 7. Never modify files in `sources/`. They are immutable after ingestion.
