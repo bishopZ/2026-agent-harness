@@ -19,6 +19,7 @@ Version numbers follow [Semantic Versioning](https://semver.org/spec/v2.0.0.html
 
 ## Changed
 
+- **Build checkpoint discipline.** `SYSTEM_OVERVIEW.md` and `IDEA_LIFECYCLE.md` (Stage 6) now require Build Plan checkpoints to act as agent session boundaries with a closure checklist (`verification_log.md`, `ideas.md`, `DASHBOARD.md`, `wiki/log.md`). Aligns with cowork-v3 `rules/incremental-execution.md` when that rules package is present upstream.
 - Clarified project language across system docs and skills: projects now use **Closed Projects** instead of **Dropped Projects**.
 - Updated project and initiative removal guidance to prefer **remove/close** wording, while keeping idea-level `Done` and `Dropped` states unchanged.
 

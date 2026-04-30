@@ -351,7 +351,7 @@ Before any construction begins, The Agent decomposes the Design into a **Build P
 - **Overview** - a paragraph restating what will be built, from the PRD and Design
 - **Architecture decisions carried forward** - a short index of ADRs from Design (or new ones emerging now)
 - **Task list, ordered** - each slice follows the task structure below
-- **Checkpoints** - explicit gates after every 2–3 slices where the system must be verified end-to-end
+- **Checkpoints** - explicit gates after every 2–3 slices where the system must be verified end-to-end. Each checkpoint in the markdown **must** include: **Hard stop for agents** (which task must not start without an explicit user continuation or owner approval) and a **Closure checklist** (`verification_log.md`, initiative `ideas.md` row, `DASHBOARD.md` if applicable, `wiki/log.md` if wiki changed). Optional: **Owner gate** when the next slice touches payments, deploy, or external commitments.
 - **Risks and mitigations** - the risks from Design, refreshed, with mitigations mapped to specific slices
 - **Open questions** - unknowns that must be resolved before or during Build, each with a proposed path to an answer
 - **Parallelization notes** - which slices can safely be done in parallel, which must be sequential, which need coordination (e.g. a shared contract defined first)
@@ -379,6 +379,24 @@ Before any construction begins, The Agent decomposes the Design into a **Build P
 **Estimated scope:** S (1–2 files) | M (3–5 files) | L (break it down)
 ```
 
+**Checkpoint structure (repeat after the last Task that belongs in each checkpoint group):**
+
+```markdown
+## Checkpoint X — [Short milestone name]
+
+**Scope:** Tasks _through N_ finished; [one line on what is true now].
+
+**Hard stop for agents:** End here. Do **not** start Task _N+1_ in this session unless the user explicitly continues past Checkpoint X [or: **and** owner approved _specific risk_, e.g. live payments].
+
+**Closure checklist:**
+
+- [ ] `05_build/verification_log.md` — tasks through Task N verified this session.
+- [ ] `initiatives/[Initiative]/ideas.md` — row updated through Checkpoint X, **Next:** Task N+1.
+- [ ] `DASHBOARD.md` / `wiki/log.md` — updated if applicable.
+
+**Human / next session:** [Optional: what you’ll do next or owner-only gate text.]
+```
+
 **Sizing.** Each slice should be S or M. L and XL slices are broken down before the Plan is approved. A slice with "and" in its title is two slices.
 
 **Rules to load (6a):** `rules/incremental-execution.md`, `rules/evidence-and-verification.md`, `rules/context-engineering.md`, `rules/anti-rationalization.md`.
@@ -399,7 +417,9 @@ With the Build Plan approved, The Agent executes one slice at a time following t
 
 Between slices the system must hold together: build succeeds, existing verifications still pass, the narrative still coheres, the pack is still launchable. This is enforced by `rules/incremental-execution.md` Rule 2.
 
-At each checkpoint from the Build Plan, The Agent stops, summarizes, and waits for your go-ahead before moving on. Checkpoints are mini-gates — you can redirect, pause, or adjust scope at any of them.
+At each checkpoint from the Build Plan, The Agent **stops the implementation chain**: it summarizes what shipped, completes the checkpoint **Closure checklist** (so `ideas.md` / `DASHBOARD.md` / wiki stay aligned — see `SYSTEM_OVERVIEW.md` **Build checkpoint discipline**), and **ends the turn** without starting the next task. Checkpoints are mini-gates — you can redirect, pause, or adjust scope. Treat “Proceed to …” text in older plans as narrative unless the plan also defines a **Hard stop**; when both conflict, **Hard stop** wins.
+
+**Default:** one checkpoint boundary per agent session. Only chain past a checkpoint when you explicitly instruct The Agent to continue.
 
 **Rules to load (6b):** `rules/incremental-execution.md`, `rules/evidence-and-verification.md`, `rules/decision-records.md`, `rules/red-flags.md`, `rules/anti-rationalization.md`.
 
