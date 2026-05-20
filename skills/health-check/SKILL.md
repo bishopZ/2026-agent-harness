@@ -23,7 +23,7 @@ User asks for a weekly health check, initiative health pass, tracker sync review
 
 2. **Initiatives table:** Check tier order, **What** blurbs, and **Last initiative work** dates against recent work. Update when clearly stale.
 
-3. **Approval queue:** For each row, open that initiative's `ideas.md` and confirm the **Idea** name matches, **Status** is **`In Review`**, and **Notes / next action** aligns with the queue row. Scan for **`In Review`** ideas missing a queue row (or document an exception in Notes).
+3. **Approval queue:** For each row, open that initiative's `ideas.md` and confirm the **Idea** name matches and **Notes / next action** aligns. **Status** is usually **`In Review`** for a “stage done — approve to advance” gate; it can be **`On Hold`** if the row is for visibility (dependency block after a draft artifact) and **Notes** + **Blocking** say so. Scan for **`In Review`** ideas missing a queue row (or document an exception in **Notes**). **Gap:** that scan does **not** find **`On Hold`** (or other non–**In Review**) ideas with a written brief and no row — add those to the queue by hand when you want them on the dashboard, or add a one-line **Notes** reminder.
 
 4. **Which `ideas.md` to read:** Use the tracker's rule. Open `ideas.md` for an initiative if it has a queue row **or** any idea whose status is not **`Backlog`**, **`Done`**, or **`Dropped`**.
 
