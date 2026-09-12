@@ -12,7 +12,7 @@ Per `SYSTEM_OVERVIEW.md`, each **project** is a folder directly under this initi
 
 | Project | Purpose | Priority |
 |---|---|---|
-| One bus ride | Things-to-do guide for a single CapMetro route, built from public schedule data. | Medium |
+| One bus ride | A free, no-account static web app that turns one MetroRapid 801 ride into a complete, printable half-day outing. | High |
 
 Add rows here when you create named projects. **Project** names should match folder names alongside `ideas.md` and `wiki/` exactly.
 
@@ -22,7 +22,7 @@ Add rows here when you create named projects. **Project** names should match fol
 
 | Idea | Status | Priority | Last updated | Notes / next action |
 |---|---|---|---|---|
-| One bus ride | Launch | Medium | 2026-08-09 | Left at Launch gate with approval unchecked. |
+| One bus ride | Growth | High | 2026-09-12 | Shipped v1 (`outputs/app/`), all 8 PRD acceptance criteria pass. Marketing pack executed 2026-09-12. In Growth: Experiment 1 (corridor fit) and Experiment 2 (disclaimer prominence) queued in `09_growth_log.md`. Next check-in after first week of monitoring signals. |
 
 ---
 
