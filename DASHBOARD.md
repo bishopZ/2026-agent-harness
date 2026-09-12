@@ -23,11 +23,14 @@ Give each initiative a **distinct** tier value when you can (for example 9, 6, 3
 **Last initiative work** is the calendar date of the last session that produced substantive progress on any idea in that initiative (drafts, stage output, wiki or file updates tied to moving work forward). Update it when that work finishes. It powers **fairness** in [PRIORITIZATION.md](PRIORITIZATION.md) so lower-tier initiatives do not starve.
 
 
-| Tier points | Initiative                                                    | What                                                 | Last initiative work |
-| ----------- | ------------------------------------------------------------- | ---------------------------------------------------- | -------------------- |
-| 8           | [My Company](initiatives/My%20Company/ideas.md)               | Initiatives, products, and growth for your business. | 2026-04-14           |
-| 6           | [My Personal Life](initiatives/My%20Personal%20Life/ideas.md) | Personal brand, habits, goals, and growth.           | 2026-04-14           |
-| 1           | [My Hobby](initiatives/My%20Hobby/ideas.md)                   | Developing and creating your hobby project.          | 2026-04-14           |
+| Tier points | Initiative                                                     | What                                                                                            | Last initiative work |
+| ----------- | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ | -------------------- |
+| 9           | [Transit](initiatives/Transit/ideas.md)                         | Things-to-do guides and rider tools for public transit routes, from public schedule data.        | 2026-09-12            |
+| 7           | [Food](initiatives/Food/ideas.md)                                | Pickup guides and volunteer materials from an org's surplus or pantry lists.                     | 2026-09-12            |
+| 6           | [Accountability](initiatives/Accountability/ideas.md)           | Watching public records or agendas for chosen keywords and briefing when they appear.            | 2026-09-12            |
+| 5           | [Housing](initiatives/Housing/ideas.md)                          | Plain-language, sourced-and-dated guides to tenant and housing resources.                        | 2026-09-12            |
+| 4           | [Literacy](initiatives/Literacy/ideas.md)                        | Reading-circle curricula and companion materials for library branches.                           | 2026-09-12            |
+| 3           | [Media](initiatives/Media/ideas.md)                              | Cause-driven visuals and posts from an org's public footage or campaign material.                | 2026-09-12            |
 
 
 ---

@@ -30,6 +30,23 @@ _Counts current as of v2.0.0. Update on MINOR version bumps that add skills or r
 
 ---
 
+## Initiatives
+
+The repo currently tracks six initiatives, ranked by tier points in [DASHBOARD.md](DASHBOARD.md) (the live source of truth — this table is a snapshot):
+
+| Initiative | What |
+| --- | --- |
+| [Transit](initiatives/Transit/ideas.md) | Things-to-do guides and rider tools for public transit routes, from public schedule data. |
+| [Food](initiatives/Food/ideas.md) | Pickup guides and volunteer materials from an org's surplus or pantry lists. |
+| [Accountability](initiatives/Accountability/ideas.md) | Watching public records or agendas for chosen keywords and briefing when they appear. |
+| [Housing](initiatives/Housing/ideas.md) | Plain-language, sourced-and-dated guides to tenant and housing resources. |
+| [Literacy](initiatives/Literacy/ideas.md) | Reading-circle curricula and companion materials for library branches. |
+| [Media](initiatives/Media/ideas.md) | Cause-driven visuals and posts from an org's public footage or campaign material. |
+
+The system is intentionally generic (see "Contributing & version" below) — swap these out for your own initiatives at any time. `Transit` ships with one worked example, `One bus ride`, moved all the way through the lifecycle to Launch with the final approval gate left unchecked, so you can see what a finished stage trail looks like.
+
+---
+
 ## What makes it different
 
 Three things set it apart from the peer repos in this space.

@@ -1,3 +1,0 @@
-# Dropped history
-
-None yet.
