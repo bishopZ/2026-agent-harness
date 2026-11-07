@@ -227,29 +227,33 @@ At certain gates, The Agent adopts one of three specialist profiles from [`agent
 
 The **Active Projects** table at the top of each initiative’s `ideas.md` lists only currently active projects. Each row has **Project**, **Purpose**, and **Priority**. When a project is no longer active, its row moves out of this table and into **## Closed Projects** at the bottom of the file. **Priority** ranks whole projects so every idea under that project inherits the same project layer in the combined score (see [PRIORITIZATION.md](PRIORITIZATION.md)).
 
-You may set **Priority** using words or numbers (same meaning either way).
+You may set **Priority** using words or numbers (same meaning either way). Numbers run from `1` (strongest) to `5` (weakest).
 
 | Value | Meaning | Points in combined score |
 |---|---|---:|
-| `High` or `1` | Strongest project pull in this initiative | 6 |
-| `Medium` or `2` | Normal project pull | 4 |
-| `Low` or `3` | Weakest project pull | 2 |
+| `Very High` or `1` | Top project in this initiative; pulls ahead of everything else here | 10 |
+| `High` or `2` | Strong project pull | 8 |
+| `Medium` or `3` | Normal project pull | 6 |
+| `Low` or `4` | Weak project pull | 4 |
+| `Very Low` or `5` | Weakest project pull; parked unless little else is eligible | 2 |
 
-If **Priority** is missing on a project row, treat it as **Medium** (4 points) for scoring until you set it.
+If **Priority** is missing on a project row, treat it as **Medium** (6 points) for scoring until you set it.
 
 ### Priority levels (ideas)
 
-Use these values in the **Priority** column on each **idea** row under a **Project:** section in that initiative’s `ideas.md`. You may use **`High` / `Medium` / `Low`** or **`1` / `2` / `3`** with the same mapping as **Project priority** above (1 = High, 2 = Medium, 3 = Low).
+Use these values in the **Priority** column on each **idea** row under a **Project:** section in that initiative’s `ideas.md`. You may use **`Very High` / `High` / `Medium` / `Low` / `Very Low`** or **`1`–`5`** with the same mapping as **Project priority** above (1 = Very High, 2 = High, 3 = Medium, 4 = Low, 5 = Very Low). The numeric scale used to have three levels (1 = High, 2 = Medium, 3 = Low); if you still have old numeric values, convert them to words.
 
-| Priority | Meaning |
-|---|---|
-| `High` or `1` | Do this before other work in this project unless blocked or overridden in **Notes**. |
-| `Medium` or `2` | Normal queue for this project. |
-| `Low` or `3` | Backlog of value. Pick after higher-priority ideas unless you promote it. |
+| Priority | Meaning | Points in combined score |
+|---|---|---:|
+| `Very High` or `1` | Do this first in this project — urgent, or unblocks other work. | 5 |
+| `High` or `2` | Do this before other work in this project unless blocked or overridden in **Notes**. | 4 |
+| `Medium` or `3` | Normal queue for this project. | 3 |
+| `Low` or `4` | Backlog of value. Pick after higher-priority ideas unless you promote it. | 2 |
+| `Very Low` or `5` | Someday/maybe. Pick only when nothing higher in this project is eligible. | 1 |
 
-**How layers combine.** Initiative **tier points** ([DASHBOARD.md](DASHBOARD.md)), **project_points**, and **idea_points** **add** in the combined score in [PRIORITIZATION.md](PRIORITIZATION.md). Staleness and phase tie-breakers there are unchanged.
+**How layers combine.** Initiative **tier points** ([DASHBOARD.md](DASHBOARD.md)), **project_points**, and **idea_points** **add** in the combined score in [PRIORITIZATION.md](PRIORITIZATION.md), weighted so the **initiative counts most, then the project, then the idea**: each tier point is worth **3**, each project priority step **2** (2–10 points), and each idea priority step **1** (1–5 points). Staleness and phase tie-breakers there are unchanged.
 
-If two ideas still tie after the score, use tie-breakers in [PRIORITIZATION.md](PRIORITIZATION.md). Cross-initiative ordering uses **combined score** and **Last initiative work** so lower-tier initiatives still get sessions.
+If two ideas still tie after the score, use tie-breakers in [PRIORITIZATION.md](PRIORITIZATION.md). Cross-initiative ordering uses **combined score** and **Last initiative work** so lower-tier initiatives still get sessions. **Last initiative work** moves forward on **any** work on the initiative, not only lifecycle steps (see **Any work counts toward Last initiative work** in [PRIORITIZATION.md](PRIORITIZATION.md)).
 
 ---
 

@@ -108,7 +108,7 @@ Once all ideas are resolved:
 
 ## Step 5 - Wiki and tracker hygiene
 
-1. **DASHBOARD.md** - Confirm all **Awaiting your approval** rows tied to this project are cleared. Update **Last initiative work** to today if this session involved substantive changes.
+1. **DASHBOARD.md** - Confirm all **Awaiting your approval** rows tied to this project are cleared. Update **Last initiative work** to today.
 2. **wiki/log.md** - Append a dated entry: `## [YYYY-MM-DD] update | Project [Name] removed`. In the body, note what happened to each idea (archived, moved, deleted) and confirm the folder is gone.
 3. **wiki/index.md** - Remove or update any cross-reference entries that pointed at pages or artifacts under the removed project. Do not delete wiki pages; retire obsolete ones to `wiki/.archive/` per `SYSTEM_OVERVIEW.md`.
 

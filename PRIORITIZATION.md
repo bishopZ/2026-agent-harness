@@ -30,6 +30,19 @@ The idea list can grow past what you or the agent can finish in order. A **pure*
 
 **Staleness days** for an initiative = calendar days from **Last initiative work** in [DASHBOARD.md](DASHBOARD.md) to **today**. If the date is **blank**, treat staleness as **90 days** for scoring (same as the cap below). That makes unknown or never-logged initiatives compete for attention until dates exist.
 
+### Any work counts toward Last initiative work
+
+**Last initiative work** is the date of the **most recent work of any kind** on the initiative — not the date of the last formal lifecycle step. Lifecycle stages, `In Review` hand-offs, and approvals count, and so does everything else:
+
+- creating or editing documents in `outputs/`, `wiki/`, or any project or idea folder, even outside a lifecycle stage;
+- code changes in a project `repo/`;
+- ingesting into `sources/`, research, and registry or structural changes (adding, completing, dropping, or closing ideas and projects);
+- work the user says they did themselves outside a session (use the date they give).
+
+Whenever a session changes anything for an initiative, set that initiative's **Last initiative work** in [DASHBOARD.md](DASHBOARD.md) to **today** (YYYY-MM-DD) before the session ends. If a session touches several initiatives, update each one. Never move the date backwards. The only thing that does not count is conversation that leaves no file or registry change.
+
+**Why.** Staleness is meant to measure how long an initiative has gone without attention. Initiatives whose work happens mostly outside the lifecycle (creative writing, exploratory documents, ad-hoc requests) would otherwise look idle while they are active, and their staleness bonus would grow out of proportion to real neglect.
+
 ---
 
 ## Combined score (default next-work pick)
@@ -39,9 +52,9 @@ For each **eligible** idea (see **What counts as blocked**), compute:
 | Input | How to get it |
 |---|---|
 | `staleness_days` | `min(` calendar days since **Last initiative work** for that idea's initiative, `90` `)` |
-| `tier_points` | From the **Initiatives** table in [DASHBOARD.md](DASHBOARD.md) for that initiative |
-| `project_points` | From the **Active Projects** table in that initiative's `ideas.md`, for the **Project** that owns the idea. Same scale as idea priority. `High` or `1` → 6 · `Medium` or `2` → 4 · `Low` or `3` → 2. Missing project **Priority** → treat as **Medium** (4). |
-| `idea_points` | Same mapping on the idea row. `High` or `1` → 6 · `Medium` or `2` → 4 · `Low` or `3` → 2 |
+| `tier_points` | From the **Initiatives** table in [DASHBOARD.md](DASHBOARD.md) for that initiative, **× 3** (initiative weight: 3 points per tier point) |
+| `project_points` | From the **Active Projects** table in that initiative's `ideas.md`, for the **Project** that owns the idea. Project weight: 2 points per step. `Very High` or `1` → 10 · `High` or `2` → 8 · `Medium` or `3` → 6 · `Low` or `4` → 4 · `Very Low` or `5` → 2. Missing project **Priority** → treat as **Medium** (6). |
+| `idea_points` | Idea weight: 1 point per step. `Very High` or `1` → 5 · `High` or `2` → 4 · `Medium` or `3` → 3 · `Low` or `4` → 2 · `Very Low` or `5` → 1 |
 
 **Formula**
 
@@ -49,7 +62,9 @@ For each **eligible** idea (see **What counts as blocked**), compute:
 
 Higher **score** wins. **Total pull** for an idea is the sum of initiative tier, project points, and idea points, plus the staleness bonus. This pulls in lower-tier initiatives after they have been idle longer, while still favoring higher projects and ideas and higher **tier points** when staleness is similar.
 
-**Tuning.** To change how fast idle initiatives catch up, adjust the multiplier on `staleness_days` (here `2`) or the **tier points** spread. Document any change in this section.
+**Layer weighting.** Initiative priority counts more than project priority, which counts more than idea priority. One tier point is worth 3, one project priority step is worth 2, and one idea priority step is worth 1, so a one-step change at a higher layer always outweighs a one-step change at a lower layer. The tie-breakers below follow the same order.
+
+**Tuning.** To change how fast idle initiatives catch up, adjust the multiplier on `staleness_days` (here `2`) or the **tier points** spread. If you change the layer weights (3 / 2 / 1), keep initiative > project > idea. Document any change in this section.
 
 **Tie-breakers when `score` is equal**
 
@@ -69,7 +84,7 @@ When you are not using the combined score (for example you already picked an ini
 
 1. **Explicit dependency or order in Notes** - if Notes say an idea must wait on another, respect that.
 2. **Earlier lifecycle stage (farther behind)** - same rule as tie-breaker 2 under **Tie-breakers when `score` is equal** (Stage Map in [IDEA_LIFECYCLE.md](IDEA_LIFECYCLE.md); earlier status wins).
-3. **Higher project priority** - **High** or **1** before **Medium** or **2** before **Low** or **3** (see [SYSTEM_OVERVIEW.md](SYSTEM_OVERVIEW.md) **Project priority**).
+3. **Higher project priority** - **Very High** or **1** before **High** or **2** before **Medium** or **3** before **Low** or **4** before **Very Low** or **5** (see [SYSTEM_OVERVIEW.md](SYSTEM_OVERVIEW.md) **Project priority**).
 4. **Higher idea priority** - same ordering on the idea row.
 5. **Older `Last updated`** - prefer the idea that has waited longer without a touch (smaller date wins, or empty last).
 6. **Idea name (A–Z)** - stable tie-break only when nothing else differs.
@@ -129,4 +144,4 @@ If an idea is only a title or one line in `ideas.md` and has **no** project brie
 2. Load **process** (default or override).
 3. Run the execution protocol in [SYSTEM_OVERVIEW.md](SYSTEM_OVERVIEW.md) (summarize, plan, wait for approval, execute, summarize).
 4. On stage completion, set **`In Review`**, update **Notes** and **Last updated** on the idea row, add **Awaiting your approval** when appropriate, and ask for approval before the next stage.
-5. When a session finishes with **substantive progress** on that initiative (including delivering work now **`In Review`**), set **Last initiative work** for that initiative in [DASHBOARD.md](DASHBOARD.md) to **today's date** (YYYY-MM-DD). That resets staleness for fairness on the next pick. If you only discussed plans with no file or registry change, you may leave the date unchanged.
+5. Set **Last initiative work** for that initiative in [DASHBOARD.md](DASHBOARD.md) to **today's date** (YYYY-MM-DD) whenever the session changed anything for it — stage output and **`In Review`** hand-offs, and equally any work outside the lifecycle (see **Any work counts toward Last initiative work**). That resets staleness for fairness on the next pick. Only a session that leaves no file or registry change keeps the old date.

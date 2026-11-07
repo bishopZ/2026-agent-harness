@@ -20,7 +20,7 @@ Rank initiatives here when tradeoffs matter. **Tier points** are the only number
 
 Give each initiative a **distinct** tier value when you can (for example 9, 6, 3, 0) so the math and strict ordering stay obvious. If two rows ever share the same **Tier points**, **table order** top to bottom breaks the tie for strict stack mode.
 
-**Last initiative work** is the calendar date of the last session that produced substantive progress on any idea in that initiative (drafts, stage output, wiki or file updates tied to moving work forward). Update it when that work finishes. It powers **fairness** in [PRIORITIZATION.md](PRIORITIZATION.md) so lower-tier initiatives do not starve.
+**Last initiative work** is the calendar date of the most recent work of **any** kind on that initiative — lifecycle stages, but also documents edited outside a stage, wiki or `outputs/` updates, code in a project `repo/`, research, and structural changes. Set it to today whenever a session changes anything for that initiative; a formal lifecycle step is not required. It powers **fairness** in [PRIORITIZATION.md](PRIORITIZATION.md) so lower-tier initiatives do not starve.
 
 
 | Tier points | Initiative                                                     | What                                                                                            | Last initiative work |

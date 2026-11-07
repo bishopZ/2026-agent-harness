@@ -34,3 +34,4 @@ There are no dependencies to install, no servers to start, and no build or test 
 6. Never delete wiki pages. Archive them to `wiki/.archive/` instead.
 7. Never modify files in `sources/`. They are immutable after ingestion.
 8. Always update `wiki/index.md` and `wiki/log.md` after any wiki operation.
+9. **Any work on an initiative — lifecycle step or not — sets that initiative's Last initiative work in `DASHBOARD.md` to today.** See `PRIORITIZATION.md` **Any work counts toward Last initiative work**.

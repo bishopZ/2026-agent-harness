@@ -30,7 +30,7 @@ If there is only an `ideas.md` row and **no** `initiatives/[Initiative]/[Project
 1. Remove the row from its **Project:** section.
 2. Append a row to `history/dropped-history.md` with **Idea**, **Project**, **Date**, **Reason**.
 3. Remove any matching row from **Awaiting your approval** in `DASHBOARD.md`.
-4. Set **Last initiative work** when this session reflects real progress on the initiative.
+4. Set **Last initiative work** to today — any work on the initiative counts.
 5. Skip filesystem archive steps unless the user asks to retain notes elsewhere.
 6. Summarize what you changed.
 
@@ -82,7 +82,7 @@ Keep `ideas.md` `## Dropped` as a link-only section. Do not add long dropped row
 
 ### 7. Tracker date
 
-Update **Last initiative work** for that initiative when appropriate.
+Set **Last initiative work** for that initiative to today.
 
 ## Completion summary (return to user)
 

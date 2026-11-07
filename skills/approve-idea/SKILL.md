@@ -53,7 +53,7 @@ Run all steps in order.
 7. Update `DASHBOARD.md`.
    - Remove the matching row from `Awaiting your approval`.
    - If approval included a revision request instead of true approval, keep the row and refresh `Notes`.
-8. If you made substantive progress on the initiative today, set that initiative `Last initiative work` to today in the `Initiatives` table.
+8. Set that initiative's `Last initiative work` to today in the `Initiatives` table — approving, and any other work on the initiative, counts.
 9. Return a short completion summary that names:
    - The approved idea.
    - The new status.

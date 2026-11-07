@@ -22,7 +22,7 @@ Resolve from the user and files:
 - **Initiative** - which `initiatives/[Initiative Name]/` folder (must exist). Ask once if ambiguous.
 - **Project name** - the exact string that will appear in the **Project** column and as the folder name. Must not duplicate an existing active project in that initiative.
 - **Purpose** - one-line description for the **Active Projects** table.
-- **Priority** - `High`, `Medium`, or `Low` (or `1` / `2` / `3`). Default **Medium** when not specified.
+- **Priority** - `Very High`, `High`, `Medium`, `Low`, or `Very Low` (or `1`–`5`, 1 = Very High). Default **Medium** when not specified.
 
 Do not invent initiatives. Do not create a project that already exists in **Active Projects** for that initiative.
 
@@ -36,7 +36,7 @@ Do not invent initiatives. Do not create a project that already exists in **Acti
 | 4 | Create `initiatives/[Initiative]/[Project Name]/` on disk. Add `.gitkeep` if no other files will be placed there immediately. |
 | 5 | Create `initiatives/[Initiative]/[Project Name]/00-how-to-use.md` (see below). |
 | 6 | **If the project has an associated GitHub repo:** create an empty `repo/` subfolder with a `.gitkeep` inside. Add the **Repo** section to `00-how-to-use.md` (see below). Do not attempt to configure the submodule — tell the user to run `git submodule add <repo-url> "initiatives/[Initiative]/[Project Name]/repo"` from the repo root. |
-| 7 | Optionally update **Last initiative work** in `DASHBOARD.md` to today when this is a significant structural addition the user wants to count toward recency. |
+| 7 | Update **Last initiative work** in `DASHBOARD.md` to today — any work on the initiative counts toward recency. |
 
 ## Active Projects row format
 

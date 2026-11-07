@@ -20,7 +20,7 @@ Confirm or infer:
 1. **Initiative** - which `initiatives/[Initiative Name]/` folder (must exist).
 2. **Project** - named project or **General** for ungrouped ideas.
 3. **Idea title** - short, noun-style name for the **Idea** column. It must match the eventual `initiatives/[Initiative]/[Project Name]/[Idea Name]/` folder name when lifecycle artifacts exist.
-4. **Idea priority** - `High`, `Medium`, `Low`, or `1` / `2` / `3` if the user gave one. Default **Medium** when unclear.
+4. **Idea priority** - `Very High`, `High`, `Medium`, `Low`, `Very Low`, or `1`–`5` (1 = Very High, 5 = Very Low) if the user gave one. Default **Medium** when unclear.
 5. **Status** - default **Backlog** for new captures unless the user says otherwise.
 6. **Richness** - one line only, or extra detail (paragraphs, lists, bullets). Rich content goes in `initiatives/[Initiative]/[Project Name]/[Idea Name]/01_brief.md`, not only in the table.
 
@@ -40,13 +40,13 @@ Use this list every time. Skip steps that do not apply.
 | 4 | If the **project is new** or the project folder is missing, create `initiatives/[Initiative]/[Project Name]/` and add `00-how-to-use.md` there (see below). |
 | 5 | Add one row to the correct **Project:** section for the new idea. Set **Last updated** to today (`YYYY-MM-DD`). |
 | 6 | If there is **rich content**, create `initiatives/[Initiative]/[Project Name]/[Idea Name]/01_brief.md` and put a short pointer in **Notes / next action** (and keep the table cell readable). Set **Status** to **In Review** and point the next step to **Pressure Test** unless the user asked for a lifecycle waiver (see **Lifecycle when you write `01_brief.md`** above). Never use **Research** as the status here by default. |
-| 7 | Optionally update **Last initiative work** in `DASHBOARD.md` for that initiative to today when the user wants this session to count toward recency, or when the capture is large (new project, long idea doc). Skip for a tiny one-line backlog ping unless asked. |
+| 7 | Update **Last initiative work** in `DASHBOARD.md` for that initiative to today — any work on the initiative counts toward recency. |
 
 Do **not** add rows to **Awaiting your approval** for a simple backlog capture. Create `initiatives/[Initiative]/[Project Name]/[Idea Name]/` only when you need a brief or richer scoped notes.
 
 ## New Project Workflow
 
-1. In **## Active Projects**, add a row: **Project**, **Purpose** (one line), **Priority** (`High` / `Medium` / `Low` or `1` / `2` / `3`; default **Medium**).
+1. In **## Active Projects**, add a row: **Project**, **Purpose** (one line), **Priority** (`Very High` / `High` / `Medium` / `Low` / `Very Low` or `1`–`5`; default **Medium**).
 2. Add **## Project: [Exact Name]** with the same column headers as other project sections in that file.
 3. Folder names must match the **Project** column **exactly** (spaces allowed, same spelling).
 

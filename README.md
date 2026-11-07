@@ -54,7 +54,7 @@ Three things set it apart from the peer repos in this space.
 | Differentiator                        | What it means                                                                                                                                                      |
 | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Human-approved at every stage         | 11 stages from brief to growth; nothing advances without your explicit sign-off. No peer repo in the benchmark scan does this — all default to autonomous chaining. |
-| Fair prioritization across everything | A combined score (`staleness × 2 + tier + project + idea`) ensures lower-priority initiatives are not starved. The system tracks what has waited longest.          |
+| Fair prioritization across everything | A combined score (`staleness × 2 + tier × 3 + project + idea`) ensures lower-priority initiatives are not starved. The system tracks what has waited longest.          |
 | Everything is a Markdown file         | No SQLite, no embeddings, no hosted memory. Every rule, stage, and decision record is a plain file: inspectable, diffable, and yours to own.                       |
 
 For an honest, dated comparison against six alternatives (OpenChronicle, 10x, claude-spellbook, PAI, the inference.sh essay, and OS-Symphony), see [The Agent Harness vs. Six Alternatives](https://time2magic.com/agent-harness).

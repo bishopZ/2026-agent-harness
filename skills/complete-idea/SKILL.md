@@ -31,7 +31,7 @@ If the idea only has a row in `ideas.md` and **no** `initiatives/[Initiative]/[P
 1. Remove the row from its **Project:** section.
 2. Append a row to `history/done-history.md` with **Idea**, **Project**, **Completed**, **Outcome**.
 3. Remove any matching row from **Awaiting your approval** in `DASHBOARD.md`.
-4. Set **Last initiative work** to **Completed date** for that initiative when this session closed real work.
+4. Set **Last initiative work** to **Completed date** for that initiative — closing an idea is work on the initiative (never move the date backwards).
 5. Skip archive directory steps. Summarize what you changed.
 
 ## Full workflow (idea folder or artifacts exist)
@@ -83,7 +83,7 @@ Keep `ideas.md` `## Done` as a link-only section. Do not append long done rows t
 
 ### 7. Tracker date
 
-If this completion was substantive, set that initiative’s **Last initiative work** in `DASHBOARD.md` to **Completed date**.
+Set that initiative’s **Last initiative work** in `DASHBOARD.md` to **Completed date** (never move it backwards).
 
 ## Completion summary (return to user)
 
